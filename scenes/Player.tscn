@@ -7,6 +7,7 @@
 radius = 14.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1119089927]
+collision_layer = 2
 script = ExtResource("1_v6fml")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=738397953]
