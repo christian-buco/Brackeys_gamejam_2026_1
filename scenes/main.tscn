@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cfydhcnxkeus7"]
+
+[node name="Main" type="Node2D" unique_id=1342932990]
+
+[node name="Label" type="Label" parent="." unique_id=931813854]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "UN VIP UN VIPPP AYYY"
