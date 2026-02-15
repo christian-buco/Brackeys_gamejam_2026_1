@@ -1,8 +1,22 @@
 [gd_scene format=3 uid="uid://cfydhcnxkeus7"]
 
+[ext_resource type="Texture2D" uid="uid://co3m4rurknsj7" path="res://icon.svg" id="1_o5qli"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
+size = Vector2(120, 112)
+
 [node name="Main" type="Node2D" unique_id=1342932990]
 
 [node name="Label" type="Label" parent="." unique_id=931813854]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "UN VIP UN VIPPP AYYY"
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1782894153]
+position = Vector2(282, 192)
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=14293429]
+texture = ExtResource("1_o5qli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1149852454]
+shape = SubResource("RectangleShape2D_0wfyh")
