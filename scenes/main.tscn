@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://cfydhcnxkeus7"]
 
-[ext_resource type="Texture2D" uid="uid://bimewtxr1abty" path="res://Assets/player.png" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://bimewtxr1abty" path="res://assets/player.png" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://b5ok6c28l2feb" path="res://assets/bed.png" id="2_0wfyh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o5qli"]
 radius = 56.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
+size = Vector2(182, 45)
 
 [node name="Main" type="Node2D" unique_id=1342932990]
 
@@ -22,3 +26,16 @@ hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1149852454]
 shape = SubResource("CircleShape2D_o5qli")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=954778053]
+position = Vector2(184, 272)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1178450328]
+position = Vector2(99, -13)
+scale = Vector2(6.875, 6.875)
+texture = ExtResource("2_0wfyh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1983316205]
+position = Vector2(102, 18.5)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_sugp2")
