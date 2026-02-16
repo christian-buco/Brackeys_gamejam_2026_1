@@ -16,6 +16,3 @@ hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1131705047]
 shape = SubResource("CircleShape2D_o5qli")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=362050682]
-position_smoothing_enabled = true
