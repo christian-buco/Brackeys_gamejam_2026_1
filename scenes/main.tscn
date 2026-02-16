@@ -19,14 +19,15 @@ text = "UN VIP UN VIPPP AYYY"
 [node name="Player" parent="." unique_id=1119089927 instance=ExtResource("1_0wfyh")]
 position = Vector2(1088, 160)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=954778053]
+[node name="Bed" type="StaticBody2D" parent="." unique_id=954778053]
 position = Vector2(184, 272)
 scale = Vector2(2.005, 2.005)
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1178450328]
+[node name="Sprite2D" type="Sprite2D" parent="Bed" unique_id=1178450328]
 texture = ExtResource("2_0wfyh")
+flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1983316205]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bed" unique_id=1983316205]
 position = Vector2(0.5, 4.5)
 shape = SubResource("RectangleShape2D_sugp2")
 
