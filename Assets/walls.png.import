@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pvx117cbycvy"
-path="res://.godot/imported/cassetteTape.png-05adf6ce78390edbdc9aad9e277d540a.ctex"
+uid="uid://bqw7xbl1fkqak"
+path="res://.godot/imported/walls.png-656140e73eae275ba08c5757c5a04b02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cassetteTape.png"
-dest_files=["res://.godot/imported/cassetteTape.png-05adf6ce78390edbdc9aad9e277d540a.ctex"]
+source_file="res://Assets/walls.png"
+dest_files=["res://.godot/imported/walls.png-656140e73eae275ba08c5757c5a04b02.ctex"]
 
 [params]
 
