@@ -3,6 +3,16 @@ extends CharacterBody2D
 @export var speed: float = 100.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+# Zoom-out
+const MAP_RECT := Rect2(16, 16, 1120, 616)
+@export var camera_limit_margin: float = 16.0   
+@export var camera_inset: float = 0.0          
+@export var normal_zoom: float = 3.0          
+@export var zoomed_out_zoom: float = 2.0   
+
+var is_zoomed_out := false
+@onready var player_camera: Camera2D = $Camera2D
+
 # Crush mechanic
 var overlapping_walls := []
 @export var crush_grace_time: float
@@ -13,6 +23,38 @@ var can_move := true
 
 # screen shake
 var shake_strength := 0.0
+
+
+func _ready() -> void:
+	# Use scene zoom or our default
+	normal_zoom = player_camera.zoom.x
+	player_camera.make_current()
+
+	var main := get_parent()
+	var zoom_button: Button = main.get_node_or_null("CanvasLayer/ZoomButton")
+	if zoom_button:
+		_setup_camera_limits(player_camera)
+		zoom_button.pressed.connect(_on_zoom_button_pressed.bind(zoom_button))
+
+
+func _setup_camera_limits(cam: Camera2D) -> void:
+	cam.limit_left = int(MAP_RECT.position.x - camera_limit_margin + camera_inset)
+	cam.limit_top = int(MAP_RECT.position.y - camera_limit_margin + camera_inset)
+	cam.limit_right = int(MAP_RECT.end.x + camera_limit_margin - camera_inset)
+	cam.limit_bottom = int(MAP_RECT.end.y + camera_limit_margin - camera_inset)
+
+
+func _on_zoom_button_pressed(zoom_button: Button) -> void:
+	is_zoomed_out = not is_zoomed_out
+	if is_zoomed_out:
+		player_camera.zoom = Vector2(zoomed_out_zoom, zoomed_out_zoom)
+		zoom_button.text = "Zoom In"
+		set_movement_enabled(false)
+	else:
+		player_camera.zoom = Vector2(normal_zoom, normal_zoom)
+		zoom_button.text = "Zoom Out"
+		set_movement_enabled(true)
+
 
 func set_movement_enabled(enabled: bool) -> void:
 	can_move = enabled

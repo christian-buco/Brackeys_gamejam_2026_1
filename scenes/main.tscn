@@ -1,10 +1,10 @@
 [gd_scene format=4 uid="uid://cfydhcnxkeus7"]
 
 [ext_resource type="PackedScene" uid="uid://d3mfcgcowh2pl" path="res://scenes/Player.tscn" id="1_0wfyh"]
-[ext_resource type="Texture2D" uid="uid://b5ok6c28l2feb" path="res://Assets/bed.png" id="2_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://b5ok6c28l2feb" path="res://assets/bed.png" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://c4wxgimjxx740" path="res://scenes/MovingWall.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://t3woextkq6bw" path="res://scenes/StaticWall.tscn" id="4_jyhfs"]
-[ext_resource type="TileSet" uid="uid://clrg1pndw1pvb" path="res://Assets/tileset.tres" id="5_tbgi4"]
+[ext_resource type="TileSet" uid="uid://clrg1pndw1pvb" path="res://assets/tileset.tres" id="5_tbgi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
 size = Vector2(23, 7)
