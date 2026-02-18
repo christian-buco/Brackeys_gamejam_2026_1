@@ -2,6 +2,16 @@ extends CharacterBody2D
 
 @export var speed: float = 100.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var camera_2d: Camera2D = $Camera2D
+
+# Zoom 
+@export_group("Zoom")
+# Zoom in
+@export var normal_zoom: float = 3.0
+# Zoom out
+@export_range(0.5, 3.0, 0.1) var zoomed_out_zoom: float = 2.0
+
+var is_zoomed_out := false
 
 # Crush mechanic
 var overlapping_walls := []
@@ -13,6 +23,25 @@ var can_move := true
 
 # screen shake
 var shake_strength := 0.0
+
+
+func _ready() -> void:
+	normal_zoom = camera_2d.zoom.x
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("zoom_toggle"):
+		toggle_zoom()
+
+func toggle_zoom() -> void:
+	is_zoomed_out = not is_zoomed_out
+	if is_zoomed_out:
+		camera_2d.zoom = Vector2(zoomed_out_zoom, zoomed_out_zoom)
+		set_movement_enabled(false)
+	else:
+		camera_2d.zoom = Vector2(normal_zoom, normal_zoom)
+		set_movement_enabled(true)
+
 
 func set_movement_enabled(enabled: bool) -> void:
 	can_move = enabled
@@ -45,7 +74,7 @@ func _physics_process(delta: float) -> void:
 func _process(delta) -> void:
 	if shake_strength > 0:
 		shake_strength = lerp(shake_strength, 0.0, 10 * delta)
-		$Camera2D.offset = Vector2(
+		camera_2d.offset = Vector2(
 			randf_range(-shake_strength, shake_strength),
 			randf_range(-shake_strength, shake_strength)
 		)
@@ -105,3 +134,13 @@ func _on_crush_detector_body_entered(body: Node2D) -> void:
 func _on_crush_detector_body_exited(body: Node2D) -> void:
 	if body in overlapping_walls:
 		overlapping_walls.erase(body)
+
+
+# Collect Cassette Stuff
+var has_cassette: bool = false
+
+func collect_cassette():
+	has_cassette = true
+	print("Player now has cassette!")
+	
+# When player goes near bed

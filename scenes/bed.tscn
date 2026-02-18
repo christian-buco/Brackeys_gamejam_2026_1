@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cfiwssm70trsj"]
+
+[ext_resource type="Texture2D" uid="uid://dur25jkpclpal" path="res://assets/bed_top.png" id="1_akt7f"]
+[ext_resource type="Script" uid="uid://bw10aptsm87g8" path="res://scripts/bed.gd" id="1_fqty4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fqty4"]
+radius = 21.023796
+
+[node name="Bed" type="Area2D" unique_id=1341902146]
+collision_mask = 2
+script = ExtResource("1_fqty4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=618033305]
+texture = ExtResource("1_akt7f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=428029353]
+shape = SubResource("CircleShape2D_fqty4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
