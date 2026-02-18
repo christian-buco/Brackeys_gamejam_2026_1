@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c4wxgimjxx740"]
 
 [ext_resource type="Script" uid="uid://3d3udmtt1dta" path="res://scripts/moving_wall.gd" id="1_nhlaj"]
-[ext_resource type="Texture2D" uid="uid://bqw7xbl1fkqak" path="res://Assets/walls.png" id="2_yr0jc"]
+[ext_resource type="Texture2D" uid="uid://bqw7xbl1fkqak" path="res://assets/walls.png" id="2_yr0jc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhlaj"]
 size = Vector2(32, 32)

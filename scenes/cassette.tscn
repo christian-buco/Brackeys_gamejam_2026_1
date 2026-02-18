@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cjpwlxfc7qm7w"]
 
-[ext_resource type="Script" uid="uid://67bvvm16m00k" path="res://scripts/cassette.gd" id="1_dyp6u"]
+[ext_resource type="Script" path="res://scripts/cassette.gd" id="1_dyp6u"]
 [ext_resource type="Texture2D" uid="uid://pvx117cbycvy" path="res://assets/cassetteTape.png" id="1_fhk3n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dyp6u"]

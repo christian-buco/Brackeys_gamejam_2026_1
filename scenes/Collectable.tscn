@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dubx5jwhc4tnk"]
 
-[ext_resource type="Texture2D" uid="uid://bqw7xbl1fkqak" path="res://Assets/walls.png" id="1_6fc4m"]
+[ext_resource type="Texture2D" uid="uid://bqw7xbl1fkqak" path="res://assets/walls.png" id="1_6fc4m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lfq20"]
 
