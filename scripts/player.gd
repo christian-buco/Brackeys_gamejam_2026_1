@@ -27,23 +27,19 @@ var shake_strength := 0.0
 
 func _ready() -> void:
 	normal_zoom = camera_2d.zoom.x
-	camera_2d.make_current()
-
-	var main := get_parent()
-	var zoom_button: Button = main.get_node_or_null("CanvasLayer/ZoomButton")
-	if zoom_button:
-		zoom_button.pressed.connect(_on_zoom_button_pressed.bind(zoom_button))
 
 
-func _on_zoom_button_pressed(zoom_button: Button) -> void:
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("zoom_toggle"):
+		toggle_zoom()
+
+func toggle_zoom() -> void:
 	is_zoomed_out = not is_zoomed_out
 	if is_zoomed_out:
 		camera_2d.zoom = Vector2(zoomed_out_zoom, zoomed_out_zoom)
-		zoom_button.text = "Zoom In"
 		set_movement_enabled(false)
 	else:
 		camera_2d.zoom = Vector2(normal_zoom, normal_zoom)
-		zoom_button.text = "Zoom Out"
 		set_movement_enabled(true)
 
 
@@ -138,3 +134,13 @@ func _on_crush_detector_body_entered(body: Node2D) -> void:
 func _on_crush_detector_body_exited(body: Node2D) -> void:
 	if body in overlapping_walls:
 		overlapping_walls.erase(body)
+
+
+# Collect Cassette Stuff
+var has_cassette: bool = false
+
+func collect_cassette():
+	has_cassette = true
+	print("Player now has cassette!")
+	
+# When player goes near bed
