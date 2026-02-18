@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dubx5jwhc4tnk"]
+
+[ext_resource type="Texture2D" uid="uid://bqw7xbl1fkqak" path="res://Assets/walls.png" id="1_6fc4m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lfq20"]
+
+[node name="Area2D" type="Area2D" unique_id=1893360387]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=144925350]
+texture = ExtResource("1_6fc4m")
+hframes = 17
+vframes = 20
+frame = 72
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=314149704]
+shape = SubResource("CircleShape2D_lfq20")
