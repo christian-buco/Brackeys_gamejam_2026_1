@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://dfxc8ir1mgdf3"]
+[gd_scene format=3 uid="uid://doq6douxegi63"]
 
-[ext_resource type="Script" uid="uid://b22lgja0xickf" path="res://scripts/title_state.gd" id="1_616co"]
-[ext_resource type="Texture2D" uid="uid://bimewtxr1abty" path="res://assets/player.png" id="1_dqyc8"]
-[ext_resource type="FontFile" uid="uid://mjsvug80he8r" path="res://assets/fonts/PixelOperator8.ttf" id="1_wm7ow"]
+[ext_resource type="Script" path="res://scripts/title_state.gd" id="1_616co"]
+[ext_resource type="Texture2D" uid="uid://bimewtxr1abty" path="res://Assets/player.png" id="1_dqyc8"]
+[ext_resource type="FontFile" uid="uid://mjsvug80he8r" path="res://Assets/fonts/PixelOperator8.ttf" id="1_wm7ow"]
 
 [sub_resource type="Animation" id="Animation_wm7ow"]
 length = 0.001
