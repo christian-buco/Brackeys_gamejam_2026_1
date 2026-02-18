@@ -1,22 +1,23 @@
 [gd_scene format=3 uid="uid://c4wxgimjxx740"]
 
 [ext_resource type="Script" uid="uid://3d3udmtt1dta" path="res://scripts/moving_wall.gd" id="1_nhlaj"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nsh8k"]
+[ext_resource type="Texture2D" uid="uid://bqw7xbl1fkqak" path="res://Assets/walls.png" id="2_yr0jc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhlaj"]
 size = Vector2(32, 32)
 
-[node name="MovingWall" type="Node2D" unique_id=1103113379]
-
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=122014554]
+[node name="MovingWall" type="AnimatableBody2D" unique_id=122014554]
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("1_nhlaj")
 
-[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=730622851]
-scale = Vector2(32, 32)
-texture = SubResource("PlaceholderTexture2D_nsh8k")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=730622851]
+texture = ExtResource("2_yr0jc")
+centered = false
+hframes = 17
+vframes = 20
+frame = 160
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=1014791848]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1014791848]
+position = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_nhlaj")
