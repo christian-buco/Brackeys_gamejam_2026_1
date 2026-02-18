@@ -1,22 +1,36 @@
 [gd_scene format=4 uid="uid://cfydhcnxkeus7"]
 
 [ext_resource type="PackedScene" uid="uid://d3mfcgcowh2pl" path="res://scenes/Player.tscn" id="1_0wfyh"]
-[ext_resource type="Texture2D" uid="uid://b5ok6c28l2feb" path="res://Assets/bed.png" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://ddpsauy4bii0w" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Texture2D" uid="uid://b5ok6c28l2feb" path="res://assets/bed.png" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://c4wxgimjxx740" path="res://scenes/MovingWall.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://t3woextkq6bw" path="res://scenes/StaticWall.tscn" id="4_jyhfs"]
-[ext_resource type="TileSet" uid="uid://clrg1pndw1pvb" path="res://Assets/tileset.tres" id="5_tbgi4"]
+[ext_resource type="TileSet" uid="uid://clrg1pndw1pvb" path="res://assets/tileset.tres" id="5_tbgi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
 size = Vector2(23, 7)
 
 [node name="Main" type="Node2D" unique_id=1342932990]
 y_sort_enabled = true
+script = ExtResource("1_main")
 
-[node name="Label" type="Label" parent="." unique_id=931813854]
-visible = false
-offset_right = 40.0
-offset_bottom = 23.0
-text = "UN VIP UN VIPPP AYYY"
+[node name="MapOverviewCamera" type="Camera2D" parent="." unique_id=1557332292]
+position = Vector2(576, 322)
+position_smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=713551109]
+layer = 10
+
+[node name="ZoomButton" type="Button" parent="CanvasLayer" unique_id=1279536121]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 60.0
+grow_horizontal = 0
+text = "Zoom Out"
 
 [node name="Player" parent="." unique_id=1119089927 instance=ExtResource("1_0wfyh")]
 position = Vector2(544, 416)

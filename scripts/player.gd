@@ -3,7 +3,21 @@ extends CharacterBody2D
 @export var speed: float = 100.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+var can_move := true
+
+
+func set_movement_enabled(enabled: bool) -> void:
+	can_move = enabled
+	if not enabled:
+		velocity = Vector2.ZERO
+		animated_sprite.play("idle")
+
+
 func _physics_process(delta: float) -> void:
+	if not can_move:
+		move_and_slide()
+		return
+
 	var input_vector := Vector2.ZERO
 
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
