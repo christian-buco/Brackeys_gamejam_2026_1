@@ -121,6 +121,11 @@ func emit_dust():
 	
 	particles.restart() # This triggers the one_shot burst
 
+# light pulse
+var pulse_time := 0.0
+var pulse_speed := 2.0
+var base_energy := 0.5
+var pulse_amount := 0.15
 
 func _process(delta) -> void:
 	if shake_strength > 0:
@@ -129,6 +134,11 @@ func _process(delta) -> void:
 			randf_range(-shake_strength, shake_strength),
 			randf_range(-shake_strength, shake_strength)
 		)
+	pulse_time += delta * pulse_speed
+	
+	var pulse = sin(pulse_time) * pulse_amount
+	$PointLight2D.energy = base_energy + pulse
+
 
 func play_walk_animation(direction: Vector2):
 	if abs(direction.x) > abs(direction.y):

@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cfiwssm70trsj" path="res://scenes/bed.tscn" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://cjpwlxfc7qm7w" path="res://scenes/collectible.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://de7hwwmi1tx0e" path="res://scenes/letter_popup.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://ctqoaqrkp38qc" path="res://scenes/wood_sign.tscn" id="8_tipki"]
+[ext_resource type="PackedScene" uid="uid://dnssq4orbway1" path="res://scenes/sign_popup.tscn" id="9_85g3d"]
 
 [node name="Main" type="Node2D" unique_id=1342932990]
 y_sort_enabled = true
@@ -68,6 +70,11 @@ visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1568162377]
 color = Color(0.12022651, 0.12331874, 0.31013814, 1)
+
+[node name="WoodSign" parent="." unique_id=747002737 instance=ExtResource("8_tipki")]
+position = Vector2(527, 420)
+
+[node name="CanvasLayer2" parent="." unique_id=1146435598 instance=ExtResource("9_85g3d")]
 
 [connection signal="collected" from="Collectables/letter" to="Obstacles/MovingWall2" method="on_item_collected"]
 [connection signal="collected" from="Collectables/letter" to="Obstacles/MovingWall3" method="on_item_collected"]

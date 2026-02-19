@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6qpntcva3t0d"
-path="res://.godot/imported/light.png-87539b10c4b4cebc046b6b91ffea6f69.ctex"
+uid="uid://b5odw6qb3j0oo"
+path="res://.godot/imported/wood_sign.png-ce16c23658f3d3435279fe912d78c9e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/light.png"
-dest_files=["res://.godot/imported/light.png-87539b10c4b4cebc046b6b91ffea6f69.ctex"]
+source_file="res://assets/wood_sign.png"
+dest_files=["res://.godot/imported/wood_sign.png-ce16c23658f3d3435279fe912d78c9e6.ctex"]
 
 [params]
 
