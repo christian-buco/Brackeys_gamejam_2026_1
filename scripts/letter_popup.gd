@@ -16,6 +16,7 @@ func show_story(text: String):
 	
 	player_ref = get_tree().current_scene.get_node("Player")
 	player_ref.set_movement_enabled(false)
+	player_ref.is_reading_letter = true
 	
 	sprite.scale = Vector2.ZERO
 	show()
@@ -37,4 +38,5 @@ func close_letter():
 	await tween.finished
 	
 	player_ref.set_movement_enabled(true)
+	player_ref.is_reading_letter = true
 	hide()

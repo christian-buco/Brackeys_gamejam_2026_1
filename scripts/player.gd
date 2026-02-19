@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export_range(0.5, 3.0, 0.1) var zoomed_out_zoom: float = 2.0
 
 var is_zoomed_out := false
+var is_reading_letter := false
 
 # Crush mechanic
 var overlapping_walls := []
@@ -34,6 +35,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		toggle_zoom()
 
 func toggle_zoom() -> void:
+	if is_reading_letter:
+		return
 	is_zoomed_out = not is_zoomed_out
 	
 	var target_zoom = zoomed_out_zoom if is_zoomed_out else normal_zoom
@@ -42,13 +45,6 @@ func toggle_zoom() -> void:
 	tween.tween_property(camera_2d, "zoom", Vector2(target_zoom, target_zoom), 0.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	set_movement_enabled(not is_zoomed_out)
 	shake_strength = 2.0
-	#if is_zoomed_out:
-		#camera_2d.zoom = Vector2(zoomed_out_zoom, zoomed_out_zoom)
-		#set_movement_enabled(false)
-	#else:
-		#camera_2d.zoom = Vector2(normal_zoom, normal_zoom)
-		#set_movement_enabled(true)
-
 
 func set_movement_enabled(enabled: bool) -> void:
 	can_move = enabled
