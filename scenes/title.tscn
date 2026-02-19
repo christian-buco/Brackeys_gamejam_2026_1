@@ -225,7 +225,8 @@ animations = [{
 }]
 
 [sub_resource type="Animation" id="Animation_wosw1"]
-length = 8.0
+length = 10.2
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -233,15 +234,15 @@ tracks/0/path = NodePath("TextStuff/PressKey:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6.1, 7.1, 8.1, 9.1, 10, 11, 12, 13, 14, 15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true, false, true, false]
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Collectable:position")
+tracks/1/path = NodePath("Letter:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -253,7 +254,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Collectable:rotation")
+tracks/2/path = NodePath("Letter:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -261,6 +262,54 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 2.0000005, 1, 1),
 "update": 0,
 "values": [0.0, -6.283185307179586, -6.2831855, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cassette:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.0333333, 4.0333333, 5.0333333, 6.0385695, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [6.283185307179586, 6.283185307179586, 0.0, 0.0, 6.2831855]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Cassette:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.0416665, 5.0416665, 6.0716667, 6.9666667),
+"transitions": PackedFloat32Array(4.756827, 0.5358865, 0.46651638, 4.2870927),
+"update": 0,
+"values": [Vector2(1186, 493), Vector2(596, 382), Vector2(558, 380), Vector2(-44, 256)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Painting:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(6.1, 8.133333, 9.099999, 10.099999),
+"transitions": PackedFloat32Array(6.0628667, 1, 1, 0.25881618),
+"update": 0,
+"values": [Vector2(-62, 567), Vector2(569, 368.5), Vector2(575, 370), Vector2(1200, 170)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Painting:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(6.1, 8.099999, 9.099999, 10.099999),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [6.283185307179586, 0.0, 0.0, 6.283185307179586]
 }
 
 [sub_resource type="Animation" id="Animation_p6dhs"]
@@ -280,13 +329,41 @@ tracks/0/keys = {
 "values": [true, false, true, false, true, false, true]
 }
 
+[sub_resource type="Animation" id="Animation_w65of"]
+resource_name = "cassette"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Cassette:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3.03, 4),
+"transitions": PackedFloat32Array(4.756827, 0.5358865, 0.46651638, 4.2870927),
+"update": 0,
+"values": [Vector2(1186, 493), Vector2(596, 382), Vector2(558, 380), Vector2(-44, 256)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cassette:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 6.283185307179586, 6.283185307179586, 0.0]
+}
+
 [sub_resource type="Animation" id="Animation_hiwto"]
 resource_name = "letter"
 length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Collectable:position")
+tracks/0/path = NodePath("Letter:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -296,11 +373,41 @@ tracks/0/keys = {
 "values": [Vector2(-68, 253), Vector2(204, 314.00003), Vector2(562, 374), Vector2(574, 373), Vector2(894, 345), Vector2(1181.0001, 268.00003)]
 }
 
+[sub_resource type="Animation" id="Animation_ygloa"]
+resource_name = "painting"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Painting:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3, 4),
+"transitions": PackedFloat32Array(4.141059, 1, 1, 0.25881618),
+"update": 0,
+"values": [Vector2(-62, 567), Vector2(569, 368.5), Vector2(575, 370), Vector2(1200, 170)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Painting:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [6.283185307179586, 0.0, 0.0, 6.283185307179586]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pyl7j"]
 _data = {
 &"RESET": SubResource("Animation_wosw1"),
 &"blinking_text": SubResource("Animation_p6dhs"),
-&"letter": SubResource("Animation_hiwto")
+&"cassette": SubResource("Animation_w65of"),
+&"letter": SubResource("Animation_hiwto"),
+&"painting": SubResource("Animation_ygloa")
 }
 
 [node name="Title" type="Control" unique_id=107416331]
@@ -451,9 +558,24 @@ visible = false
 libraries/ = SubResource("AnimationLibrary_pyl7j")
 autoplay = &"RESET"
 
-[node name="Collectable" type="Sprite2D" parent="." unique_id=315921841]
+[node name="Letter" type="Sprite2D" parent="." unique_id=315921841]
 position = Vector2(-68, 253)
 scale = Vector2(2.59375, 2.59375)
 texture = ExtResource("9_w65of")
 hframes = 4
 frame = 2
+
+[node name="Cassette" type="Sprite2D" parent="." unique_id=648060596]
+position = Vector2(1186, 493)
+rotation = 6.2831855
+scale = Vector2(2, 2)
+texture = ExtResource("9_w65of")
+hframes = 4
+
+[node name="Painting" type="Sprite2D" parent="." unique_id=1959142763]
+position = Vector2(-62, 567)
+rotation = 6.2831855
+scale = Vector2(3, 3)
+texture = ExtResource("9_w65of")
+hframes = 4
+frame = 1
