@@ -25,9 +25,15 @@ var can_move := true
 # screen shake
 var shake_strength := 0.0
 
+# step particles
+var step_distance = 64.0
+var distance_moved = 0.0
+var last_position = Vector2.ZERO
+var was_moving := false
 
 func _ready() -> void:
-	normal_zoom = camera_2d.zoom.x
+	camera_2d.zoom = Vector2(normal_zoom, normal_zoom)
+	last_position = global_position
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -67,12 +73,54 @@ func _physics_process(delta: float) -> void:
 
 	velocity = input_vector * speed
 	move_and_slide()
+	var is_moving_now = input_vector != Vector2.ZERO
+
+	if is_moving_now:
+		# --- FIRST STEP LOGIC ---
+		# If we weren't moving last frame, but we are now: EMIT!
+		if not was_moving:
+			emit_dust()
+			distance_moved = 0 # Reset so the next puff happens after step_distance
+		
+		# --- DISTANCE LOGIC ---
+		distance_moved += (global_position - last_position).length()
+		if distance_moved >= step_distance:
+			distance_moved = 0
+			emit_dust()
+	else:
+		distance_moved = 0
+	
+	# Update these at the end of every frame
+	was_moving = is_moving_now
+	last_position = global_position
+	## track distance moved
+	#if input_vector != Vector2.ZERO:
+		#
+		#distance_moved += (global_position - last_position).length()
+		#if distance_moved >= step_distance:
+			#distance_moved = 0
+			#emit_dust()
+	#else:
+		#distance_moved = 0
+	#last_position = global_position
+		
 	check_crush(delta)
 	
 	if input_vector != Vector2.ZERO:
 		play_walk_animation(input_vector)
 	else:
 		animated_sprite.play("idle")
+
+func emit_dust():
+	var particles = $CPUParticles2D
+	
+	# Randomize position slightly so it's not always dead center
+	# This simulates left foot / right foot steps
+	var pos_offset = Vector2(randf_range(-4, 4), randf_range(0, 2))
+	particles.position = pos_offset 
+	
+	particles.restart() # This triggers the one_shot burst
+
 
 func _process(delta) -> void:
 	if shake_strength > 0:

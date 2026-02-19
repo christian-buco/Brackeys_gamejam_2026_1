@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bimewtxr1abty" path="res://assets/player.png" id="1_p0vlq"]
 [ext_resource type="Script" uid="uid://d05iepym3s6y7" path="res://scripts/player.gd" id="1_v6fml"]
+[ext_resource type="Texture2D" uid="uid://m5g1xe01rn0s" path="res://assets/light.png" id="3_3li8b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6fml"]
 atlas = ExtResource("1_p0vlq")
@@ -181,6 +182,7 @@ radius = 2.0
 y_sort_enabled = true
 collision_layer = 2
 script = ExtResource("1_v6fml")
+normal_zoom = 4.0
 crush_grace_time = 0.2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=899074835]
@@ -210,6 +212,26 @@ limit_bottom = 640
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_v6fml")
 debug_color = Color(0.7493924, 0.061441652, 0.20838803, 0.41960785)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=524480026]
+energy = 0.7
+texture = ExtResource("3_3li8b")
+texture_scale = 3.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=939226569]
+z_index = -1
+emitting = false
+amount = 5
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, -20)
+initial_velocity_min = 15.0
+initial_velocity_max = 30.0
+damping_min = 40.0
+damping_max = 60.0
+color = Color(1, 1, 1, 0.7058824)
 
 [connection signal="body_entered" from="CrushingDetector" to="." method="_on_crush_detector_body_entered"]
 [connection signal="body_exited" from="CrushingDetector" to="." method="_on_crush_detector_body_exited"]

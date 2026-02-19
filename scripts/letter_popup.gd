@@ -39,5 +39,5 @@ func close_letter():
 	await tween.finished
 	
 	player_ref.set_movement_enabled(true)
-	player_ref.is_reading_letter = true
+	player_ref.is_reading_letter = false
 	hide()
