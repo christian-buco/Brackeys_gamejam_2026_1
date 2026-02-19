@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bimewtxr1abty" path="res://assets/player.png" id="4_pyl7j"]
 [ext_resource type="Texture2D" uid="uid://bqw7xbl1fkqak" path="res://assets/walls.png" id="6_ia1n6"]
 [ext_resource type="Texture2D" uid="uid://dur25jkpclpal" path="res://assets/bed_top.png" id="7_hiwto"]
+[ext_resource type="PackedScene" uid="uid://d1tj8q48xhei5" path="res://scenes/transition.tscn" id="7_yql1r"]
 
 [sub_resource type="Animation" id="Animation_wosw1"]
 length = 0.001
@@ -200,3 +201,5 @@ horizontal_alignment = 1
 position = Vector2(490, 434)
 scale = Vector2(2, 2)
 texture = ExtResource("7_hiwto")
+
+[node name="Transition" parent="." unique_id=1370941764 instance=ExtResource("7_yql1r")]

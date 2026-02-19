@@ -1,12 +1,17 @@
 extends Control
 
+@onready var transition = $Transition
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_process_input(true)
+	transition.transitioned.connect(_on_transition_finished)
+	transition.get_node("ColorRect").color = Color(0, 0, 0, 0)  # start transparent so we see the title
 
 
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
-		get_tree().change_scene_to_file("res://scenes/menu_state.tscn")
-		
+		transition.transition()
+		get_viewport().set_input_as_handled()
+
+
+func _on_transition_finished() -> void:
+	get_tree().change_scene_to_file("res://scenes/menu_state.tscn")
