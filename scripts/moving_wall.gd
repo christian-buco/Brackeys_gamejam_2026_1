@@ -5,6 +5,7 @@ extends AnimatableBody2D
 @export var move_speed = 50.0  # Speed in pixels/second
 @export var pause_time = 1.0  # Seconds to wait at each end
 @export var auto_start = true
+@export var wait_for_item: String = "letter"
 
 var start_position: Vector2
 var target_position: Vector2
@@ -53,3 +54,7 @@ func pause_and_reverse():
 	await get_tree().create_timer(pause_time).timeout
 	current_direction *= -1
 	is_paused = false
+
+func on_item_collected(item_type:String):
+	if item_type == wait_for_item and not is_moving:
+		start_moving()

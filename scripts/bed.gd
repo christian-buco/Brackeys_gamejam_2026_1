@@ -19,8 +19,8 @@ func _process(_delta):
 		submit_item()
 
 func submit_item():
-	if player_in_range.has_cassette:
+	if player_in_range.inventory["cassette"] == 1:
 		print("You submitted cassette")
-		player_in_range.has_cassette = false
+		player_in_range.inventory["cassette"] = 0
 	else:
 		print("You don't have a cassette")

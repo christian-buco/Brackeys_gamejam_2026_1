@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: float = 100.0
+@export var speed: float = 75.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera_2d: Camera2D = $Camera2D
 
@@ -137,10 +137,18 @@ func _on_crush_detector_body_exited(body: Node2D) -> void:
 
 
 # Collect Cassette Stuff
-var has_cassette: bool = false
+var inventory = {
+	"cassette": 0,
+	"painting": 0,
+	"letter": 0
+}
 
-func collect_cassette():
-	has_cassette = true
-	print("Player now has cassette!")
+
+func collect_item(item_type: String):
+	if inventory.has(item_type):
+		inventory[item_type] += 1
+		print("Collected %s!" % [item_type])
+	else:
+		pass
 	
 # When player goes near bed

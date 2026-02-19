@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://de7hwwmi1tx0e"]
+
+[ext_resource type="Script" uid="uid://bhrji8rjkotru" path="res://scripts/letter_popup.gd" id="1_uytn6"]
+[ext_resource type="Texture2D" uid="uid://dsdqnghasf0im" path="res://assets/collectable.png" id="2_77ven"]
+[ext_resource type="FontFile" uid="uid://mjsvug80he8r" path="res://assets/fonts/PixelOperator8.ttf" id="3_fonq7"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1340662459]
+
+[node name="LetterPopup" type="Control" parent="." unique_id=1461822501]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_uytn6")
+
+[node name="Sprite2D" type="Sprite2D" parent="LetterPopup" unique_id=1303399696]
+position = Vector2(576, 320)
+texture = ExtResource("2_77ven")
+hframes = 4
+frame = 3
+
+[node name="Label" type="Label" parent="LetterPopup" unique_id=413883413]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_fonq7")
+text = "TEST"
