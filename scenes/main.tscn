@@ -75,6 +75,7 @@ color = Color(0.12022651, 0.12331874, 0.31013814, 1)
 position = Vector2(527, 420)
 
 [node name="CanvasLayer2" parent="." unique_id=1146435598 instance=ExtResource("9_85g3d")]
+visible = false
 
 [connection signal="collected" from="Collectables/letter" to="Obstacles/MovingWall2" method="on_item_collected"]
 [connection signal="collected" from="Collectables/letter" to="Obstacles/MovingWall3" method="on_item_collected"]

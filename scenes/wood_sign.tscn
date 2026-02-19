@@ -13,9 +13,11 @@ script = ExtResource("1_v81r5")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1501622702]
 modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
 texture = ExtResource("1_saro2")
+offset = Vector2(0, -10)
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=208416156]
+position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_v81r5")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

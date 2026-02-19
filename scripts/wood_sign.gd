@@ -13,9 +13,13 @@ func _on_body_exited(body):
 		player_in_range = null
 
 func _process(delta):
-	if player_in_range and Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("interact"):	
+		print(player_in_range)
+	if player_in_range and Input.is_action_just_pressed("interact") and self.monitoring == true:
+		print("Interacting with sign")
+		self.monitoring = false
 		show_sign()
 
 func show_sign():
 	var popup = get_tree().current_scene.get_node("CanvasLayer2/SignPopup")
-	popup.show_message(message)
+	popup.show_message(message, self)

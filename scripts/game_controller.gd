@@ -4,7 +4,8 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("game_controller")
-
+	$CanvasLayer.visible = true
+	$CanvasLayer2.visible = true
 
 func on_item_collected(item_type:String):
 	match item_type:
