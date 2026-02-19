@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bimewtxr1abty" path="res://assets/player.png" id="1_p0vlq"]
 [ext_resource type="Script" uid="uid://d05iepym3s6y7" path="res://scripts/player.gd" id="1_v6fml"]
 [ext_resource type="Texture2D" uid="uid://6qpntcva3t0d" path="res://assets/light.png" id="3_3li8b"]
+[ext_resource type="Texture2D" uid="uid://svrh6qk88wms" path="res://assets/icons.png" id="4_mdl7e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6fml"]
 atlas = ExtResource("1_p0vlq")
@@ -232,6 +233,14 @@ initial_velocity_max = 30.0
 damping_min = 40.0
 damping_max = 60.0
 color = Color(1, 1, 1, 0.7058824)
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1090039256]
+modulate = Color(0.35686275, 0.35686275, 0.35686275, 0)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_mdl7e")
+offset = Vector2(0, -76)
+hframes = 4
+frame = 1
 
 [connection signal="body_entered" from="CrushingDetector" to="." method="_on_crush_detector_body_entered"]
 [connection signal="body_exited" from="CrushingDetector" to="." method="_on_crush_detector_body_exited"]

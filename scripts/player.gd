@@ -31,6 +31,9 @@ var distance_moved = 0.0
 var last_position = Vector2.ZERO
 var was_moving := false
 
+# interact icon
+@onready var icon = $Icon
+
 func _ready() -> void:
 	camera_2d.zoom = Vector2(normal_zoom, normal_zoom)
 	last_position = global_position
@@ -203,6 +206,39 @@ var inventory = {
 	"painting": 0,
 	"letter": 0
 }
+
+var bob_tween: Tween
+
+func show_icon():
+	# Kill any existing fade to prevent conflicts
+	var fade_tween = create_tween()
+	# Fade In
+	fade_tween.tween_property(icon, "modulate:a", 1.0, 0.4).set_trans(Tween.TRANS_SINE)
+	
+	# Start the bobbing loop
+	start_bobbing()
+
+func hide_icon():
+	var fade_tween = create_tween()
+	# Fade Out
+	fade_tween.tween_property(icon, "modulate:a", 0.0, 0.2)
+	
+	# Stop bobbing when hidden
+	stop_bobbing()
+
+func start_bobbing():
+	if bob_tween: bob_tween.kill() # Ensure we don't stack tweens
+	bob_tween = create_tween().set_loops().set_trans(Tween.TRANS_SINE)
+	
+	# Bobs the texture up and down by 4 pixels
+	# We use the current offset as the "base" to keep it relative
+	var base_offset = icon.offset.y
+	bob_tween.tween_property(icon, "offset:y", base_offset - 4, 0.8)
+	bob_tween.tween_property(icon, "offset:y", base_offset, 0.8)
+
+func stop_bobbing():
+	if bob_tween:
+		bob_tween.kill()
 
 
 func collect_item(item_type: String):

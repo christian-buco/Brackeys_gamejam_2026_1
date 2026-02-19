@@ -18,6 +18,7 @@ size_flags_vertical = 4
 script = ExtResource("1_uytn6")
 
 [node name="Sprite2D" type="Sprite2D" parent="LetterPopup" unique_id=1303399696]
+modulate = Color(0.33660764, 0.3366076, 0.3366076, 1)
 position = Vector2(576, 320)
 scale = Vector2(25, 25)
 texture = ExtResource("2_77ven")
@@ -31,13 +32,31 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -164.0
-offset_right = 144.0
-offset_bottom = 164.0
+offset_left = -134.0
+offset_top = -204.0
+offset_right = 184.0
+offset_bottom = 196.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_fonq7")
+theme_override_font_sizes/normal_font_size = 13
 bbcode_enabled = true
-text = "TEST"
+text = "I’ve rewritten this more times than I can count.
+Every version feels too small for what I should have said.
+
+I keep thinking about that day.
+You were waiting for something from me —
+an answer, a reason to stay.
+And I gave you silence.
+
+I told myself I needed time.
+But time doesn’t fix what we refuse to face.
+
+I was scared.
+I didn’t know how to hold onto something good without breaking it.
+
+If you ever think back to what we were,
+know that I do too.
+
+And I’m sorry."

@@ -1,15 +1,17 @@
 extends Area2D
 
-@export var message: String = "You are not whole yet. \nPieces of you remain in this place."
+@export_multiline var message: String = "You are not whole yet. \nPieces of you remain in this place."
 
 var player_in_range: Node = null
 
 func _on_body_entered(body):
 	if body.name == "Player":
 		player_in_range = body
+		player_in_range.show_icon()
 
 func _on_body_exited(body):
 	if body == player_in_range:
+		player_in_range.hide_icon()
 		player_in_range = null
 
 func _process(delta):
