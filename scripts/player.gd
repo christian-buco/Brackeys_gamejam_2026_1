@@ -35,12 +35,19 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func toggle_zoom() -> void:
 	is_zoomed_out = not is_zoomed_out
-	if is_zoomed_out:
-		camera_2d.zoom = Vector2(zoomed_out_zoom, zoomed_out_zoom)
-		set_movement_enabled(false)
-	else:
-		camera_2d.zoom = Vector2(normal_zoom, normal_zoom)
-		set_movement_enabled(true)
+	
+	var target_zoom = zoomed_out_zoom if is_zoomed_out else normal_zoom
+	
+	var tween = create_tween()
+	tween.tween_property(camera_2d, "zoom", Vector2(target_zoom, target_zoom), 0.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	set_movement_enabled(not is_zoomed_out)
+	shake_strength = 2.0
+	#if is_zoomed_out:
+		#camera_2d.zoom = Vector2(zoomed_out_zoom, zoomed_out_zoom)
+		#set_movement_enabled(false)
+	#else:
+		#camera_2d.zoom = Vector2(normal_zoom, normal_zoom)
+		#set_movement_enabled(true)
 
 
 func set_movement_enabled(enabled: bool) -> void:

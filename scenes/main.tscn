@@ -32,6 +32,7 @@ position = Vector2(544, 544)
 item_type = "letter"
 
 [node name="Tilemap" type="Node2D" parent="." unique_id=347663639]
+y_sort_enabled = true
 
 [node name="floor" type="TileMapLayer" parent="Tilemap" unique_id=87809466]
 z_index = -2
