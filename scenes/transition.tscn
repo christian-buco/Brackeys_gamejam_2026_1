@@ -60,6 +60,7 @@ script = ExtResource("1_rerct")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=368914883]
 offset_right = 1151.0
 offset_bottom = 647.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=414150835]
