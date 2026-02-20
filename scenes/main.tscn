@@ -16,7 +16,7 @@ y_sort_enabled = true
 script = ExtResource("1_tefeu")
 
 [node name="Player" parent="." unique_id=1119089927 instance=ExtResource("1_0wfyh")]
-position = Vector2(800, 544)
+position = Vector2(779, 540)
 
 [node name="Radio" parent="." unique_id=1218966091 instance=ExtResource("2_choun")]
 position = Vector2(464, 258)
