@@ -217,7 +217,8 @@ debug_color = Color(0.7493924, 0.061441652, 0.20838803, 0.41960785)
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=524480026]
 energy = 0.7
 texture = ExtResource("3_3li8b")
-texture_scale = 3.0
+offset = Vector2(0, -16)
+texture_scale = 2.5
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=939226569]
 z_index = -1

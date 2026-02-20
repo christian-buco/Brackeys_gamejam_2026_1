@@ -22,6 +22,5 @@ func submit_item():
 	if player_in_range.inventory["cassette"] == 1:
 		print("You submitted cassette")
 		$AudioStreamPlayer2D.play()
-		player_in_range.inventory["cassette"] = 0
 	else:
 		print("You don't have a cassette")

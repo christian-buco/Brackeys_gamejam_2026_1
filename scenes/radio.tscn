@@ -4,21 +4,24 @@
 [ext_resource type="Texture2D" uid="uid://jxpc2e76ow73" path="res://assets/radio.png" id="2_4b7o3"]
 [ext_resource type="AudioStream" uid="uid://qj87qt73kkpm" path="res://assets/audio/cassette.wav" id="3_3mpwk"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fqty4"]
-radius = 21.023796
+[sub_resource type="CircleShape2D" id="CircleShape2D_y83x7"]
+radius = 22.0
 
-[node name="Radio" type="Area2D" unique_id=1341902146]
-scale = Vector2(0.6, 0.6)
+[node name="Radio" type="Area2D" unique_id=1218966091]
+y_sort_enabled = true
 collision_mask = 2
 script = ExtResource("1_7h80l")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=618033305]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1751075348]
+y_sort_enabled = true
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_4b7o3")
+offset = Vector2(0, -16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=428029353]
-shape = SubResource("CircleShape2D_fqty4")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2144667805]
+shape = SubResource("CircleShape2D_y83x7")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=365968701]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1786723215]
 stream = ExtResource("3_3mpwk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

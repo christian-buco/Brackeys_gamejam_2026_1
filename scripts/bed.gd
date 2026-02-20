@@ -16,12 +16,17 @@ func _on_body_exited(body):
 
 func _process(_delta):
 	if player_in_range and Input.is_action_just_pressed("interact"):
-		submit_item()
+		print("interacting with bed")
 
-func submit_item():
-	if player_in_range.inventory["cassette"] == 1:
-		print("You submitted cassette")
-		$AudioStreamPlayer2D.play()
-		player_in_range.inventory["cassette"] = 0
+func end_game_check():
+	var inventory = player_in_range.inventory
+	
+	# Create a list of keys (item names) where the value is 0
+	var missing_items = inventory.keys().filter(func(item): return inventory[item] == 0)
+
+	if missing_items.is_empty():
+		print("You finished the game")
 	else:
-		print("You don't have a cassette")
+		# Join the missing items with a comma for a clean message
+		var list_string = ", ".join(missing_items)
+		print("You are missing: " + list_string)
