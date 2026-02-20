@@ -3,42 +3,33 @@ extends CharacterBody2D
 @export var speed: float = 75.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera_2d: Camera2D = $Camera2D
-@onready var crush_detector: Area2D = $CrushingDetector
 
-# Zoom 
 @export_group("Zoom")
-# Zoom in
 @export var normal_zoom: float = 3.0
-# Zoom out
 @export_range(0.5, 3.0, 0.1) var zoomed_out_zoom: float = 2.0
 
 var is_zoomed_out := false
 var is_reading_letter := false
-
-# Crush mechanic
-var overlapping_walls := []
-@export var crush_grace_time: float
-var crush_timer: float = 0.0
-var is_currently_crushed: bool = false
-
 var can_move := true
 
-# screen shake
-var shake_strength := 0.0
+@export_group("Crush")
+@export var crush_grace_time: float = 0.2
+const CRUSH_TOUCH_DISTANCE: float = 26.0  # Player r5 + wall half 16 + margin
 
-# step particles
-var step_distance = 64.0
-var distance_moved = 0.0
-var last_position = Vector2.ZERO
-var was_moving := false
+var crush_timer: float = 0.0
+var shake_strength: float = 0.0
 
-# interact icon
-@onready var icon = $Icon
+var step_distance: float = 64.0
+var distance_moved: float = 0.0
+var last_position: Vector2 = Vector2.ZERO
+var was_moving: bool = false
+
+@onready var icon: Sprite2D = $Icon
+var inventory: Dictionary = {"cassette": 0, "painting": 0, "letter": 0}
 
 func _ready() -> void:
 	camera_2d.zoom = Vector2(normal_zoom, normal_zoom)
 	last_position = global_position
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("zoom_toggle"):
@@ -48,11 +39,8 @@ func toggle_zoom() -> void:
 	if is_reading_letter:
 		return
 	is_zoomed_out = not is_zoomed_out
-	
-	var target_zoom = zoomed_out_zoom if is_zoomed_out else normal_zoom
-	
-	var tween = create_tween()
-	tween.tween_property(camera_2d, "zoom", Vector2(target_zoom, target_zoom), 0.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	var target := zoomed_out_zoom if is_zoomed_out else normal_zoom
+	create_tween().tween_property(camera_2d, "zoom", Vector2(target, target), 0.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	set_movement_enabled(not is_zoomed_out)
 	shake_strength = 2.0
 
@@ -67,201 +55,113 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	var input_vector := Vector2.ZERO
-
-	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-
-	# Prevent diagonal speed boost
-	input_vector = input_vector.normalized()
-
-	velocity = input_vector * speed
+	var input := Vector2(
+		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
+		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	).normalized()
+	velocity = input * speed
 	move_and_slide()
-	var is_moving_now = input_vector != Vector2.ZERO
 
-	if is_moving_now:
-		# --- FIRST STEP LOGIC ---
-		# If we weren't moving last frame, but we are now: EMIT!
+	# Step dust
+	var moving := input != Vector2.ZERO
+	if moving:
 		if not was_moving:
 			emit_dust()
-			distance_moved = 0 # Reset so the next puff happens after step_distance
-		
-		# --- DISTANCE LOGIC ---
+			distance_moved = 0
 		distance_moved += (global_position - last_position).length()
 		if distance_moved >= step_distance:
 			distance_moved = 0
 			emit_dust()
 	else:
 		distance_moved = 0
-	
-	# Update these at the end of every frame
-	was_moving = is_moving_now
+	was_moving = moving
 	last_position = global_position
-	## track distance moved
-	#if input_vector != Vector2.ZERO:
-		#
-		#distance_moved += (global_position - last_position).length()
-		#if distance_moved >= step_distance:
-			#distance_moved = 0
-			#emit_dust()
-	#else:
-		#distance_moved = 0
-	#last_position = global_position
+
+	# Crush: wall pushing us into something
+	_check_crush(delta)
+
+	# Die if inside a wall
 	if $RayCast2D.is_colliding():
-		var collider = $RayCast2D.get_collider()
-		if collider.is_in_group("static_wall") or collider is TileMap:
+		var c = $RayCast2D.get_collider()
+		if c and (c is TileMapLayer or c is TileMap or c.is_in_group("static_wall")):
 			die()
-	check_crush(delta)
-	
-	if input_vector != Vector2.ZERO:
-		play_walk_animation(input_vector)
+
+	if input != Vector2.ZERO:
+		play_walk_animation(input)
 	else:
 		animated_sprite.play("idle")
 
-func emit_dust():
-	var particles = $CPUParticles2D
-	
-	# Randomize position slightly so it's not always dead center
-	# This simulates left foot / right foot steps
-	var pos_offset = Vector2(randf_range(-4, 4), randf_range(0, 2))
-	particles.position = pos_offset 
-	
-	particles.restart() # This triggers the one_shot burst
+func _check_crush(delta: float) -> void:
+	# Crushed = moving wall is touching us AND we're pressed against something (floor, maze, etc.)
+	# Wall moves after us so we rarely get slide collision with it. Use distance instead.
+	var near_moving_wall := false
+	for node in get_tree().get_nodes_in_group("moving_wall"):
+		if not is_instance_valid(node) or not (node is Node2D):
+			continue
+		var wall: Node2D = node
+		var wall_center := wall.global_position + Vector2(16, 16)  # CollisionShape offset
+		if global_position.distance_to(wall_center) <= CRUSH_TOUCH_DISTANCE:
+			near_moving_wall = true
+			break
 
-# light pulse
-var pulse_time := 0.0
-var pulse_speed := 2.0
-var base_energy := 0.5
-var pulse_amount := 0.15
+	# Must be pressed against floor/wall (slide collision). Don't use is_on_floor() - that's
+	# true when just standing, causing false crush when block moves up from below.
+	var against_obstacle := false
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i).get_collider()
+		if not c:
+			continue
+		if c is TileMapLayer or c is TileMap or c.is_in_group("static_wall"):
+			against_obstacle = true
+			break
 
-func _process(delta) -> void:
-	if shake_strength > 0:
-		shake_strength = lerp(shake_strength, 0.0, 10 * delta)
-		camera_2d.offset = Vector2(
-			randf_range(-shake_strength, shake_strength),
-			randf_range(-shake_strength, shake_strength)
-		)
-	pulse_time += delta * pulse_speed
-	
-	var pulse = sin(pulse_time) * pulse_amount
-	$PointLight2D.energy = base_energy + pulse
-
-
-func play_walk_animation(direction: Vector2):
-	if abs(direction.x) > abs(direction.y):
-		if direction.x > 0:
-			animated_sprite.play("walk_right")
-		else:
-			animated_sprite.play("walk_left")
+	if near_moving_wall and against_obstacle:
+		crush_timer += delta
+		if crush_timer >= crush_grace_time:
+			die()
 	else:
-		if direction.y > 0:
-			animated_sprite.play("walk_down")
-		else:
-			animated_sprite.play("walk_up")
-
-func check_crush(delta):
-	# Use get_overlapping_bodies() for reliable detection when squished - 
-	# body_exited can fire unreliably when crushed, and the smaller detector 
-	# may briefly lose overlap. Polling is more accurate.
-	var overlapping_walls_now: Array[Node2D] = []
-	for body in crush_detector.get_overlapping_bodies():
-		if body.is_in_group("moving_wall"):
-			overlapping_walls_now.append(body)
-	
-	if overlapping_walls_now.is_empty():
 		crush_timer = 0.0
-		return
-	
-	for wall in overlapping_walls_now:
-		# Crush when: wall is moving, OR wall is paused at endpoint (player stuck between wall and floor)
-		var wall_moving: bool = wall.is_moving and not wall.is_paused
-		var prog: float = wall.move_progress if "move_progress" in wall else 0.5
-		var wall_paused_at_end: bool = wall.is_paused and (prog >= 0.99 or prog <= 0.01)
-		if wall_moving or wall_paused_at_end:
-			crush_timer += delta
-			if crush_timer >= crush_grace_time:
-				die()
-			return
-	crush_timer = 0.0
 
-	return
-
-func die():
+func die() -> void:
 	if not can_move:
 		return
-
 	can_move = false
 	velocity = Vector2.ZERO
-
-	print("CRUSHED")
 	animated_sprite.scale = Vector2(0.6, 1.2)
 	shake_strength = 8.0
-
-	# Optional: small freeze effect
 	Engine.time_scale = 0.1
 	await get_tree().create_timer(0.15).timeout
 	Engine.time_scale = 1.0
-
-
 	get_tree().reload_current_scene()
 
+func emit_dust() -> void:
+	$CPUParticles2D.position = Vector2(randf_range(-4, 4), randf_range(0, 2))
+	$CPUParticles2D.restart()
 
-func _on_crush_detector_body_entered(body: Node2D) -> void:
-	if body.is_in_group("moving_wall") or body.is_in_group("static_wall"):
-		overlapping_walls.append(body)
+func _process(delta: float) -> void:
+	if shake_strength > 0:
+		shake_strength = lerp(shake_strength, 0.0, 10 * delta)
+		camera_2d.offset = Vector2(randf_range(-shake_strength, shake_strength), randf_range(-shake_strength, shake_strength))
+	$PointLight2D.energy = 0.5 + sin(Time.get_ticks_msec() * 0.004) * 0.15
 
+func play_walk_animation(dir: Vector2) -> void:
+	if abs(dir.x) > abs(dir.y):
+		animated_sprite.play("walk_right" if dir.x > 0 else "walk_left")
+	else:
+		animated_sprite.play("walk_down" if dir.y > 0 else "walk_up")
 
-func _on_crush_detector_body_exited(body: Node2D) -> void:
-	if body in overlapping_walls:
-		overlapping_walls.erase(body)
+func show_icon() -> void:
+	create_tween().tween_property(icon, "modulate:a", 1.0, 0.4)
 
+func hide_icon() -> void:
+	create_tween().tween_property(icon, "modulate:a", 0.0, 0.2)
 
-# Collect Cassette Stuff
-var inventory = {
-	"cassette": 0,
-	"painting": 0,
-	"letter": 0
-}
-
-var bob_tween: Tween
-
-func show_icon():
-	# Kill any existing fade to prevent conflicts
-	var fade_tween = create_tween()
-	# Fade In
-	fade_tween.tween_property(icon, "modulate:a", 1.0, 0.4).set_trans(Tween.TRANS_SINE)
-	
-	# Start the bobbing loop
-	start_bobbing()
-
-func hide_icon():
-	var fade_tween = create_tween()
-	# Fade Out
-	fade_tween.tween_property(icon, "modulate:a", 0.0, 0.2)
-	
-	# Stop bobbing when hidden
-	stop_bobbing()
-
-func start_bobbing():
-	if bob_tween: bob_tween.kill() # Ensure we don't stack tweens
-	bob_tween = create_tween().set_loops().set_trans(Tween.TRANS_SINE)
-	
-	# Bobs the texture up and down by 4 pixels
-	# We use the current offset as the "base" to keep it relative
-	var base_offset = icon.offset.y
-	bob_tween.tween_property(icon, "offset:y", base_offset - 4, 0.8)
-	bob_tween.tween_property(icon, "offset:y", base_offset, 0.8)
-
-func stop_bobbing():
-	if bob_tween:
-		bob_tween.kill()
-
-
-func collect_item(item_type: String):
+func collect_item(item_type: String) -> void:
 	if inventory.has(item_type):
 		inventory[item_type] += 1
-		print("Collected %s!" % [item_type])
-	else:
-		pass
-	
-# When player goes near bed
+
+func _on_crush_detector_body_entered(_body: Node2D) -> void:
+	pass
+
+func _on_crush_detector_body_exited(_body: Node2D) -> void:
+	pass
