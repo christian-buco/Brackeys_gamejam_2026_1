@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed: float = 75.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var crush_detector: Area2D = $CrushingDetector
 
 # Zoom 
 @export_group("Zoom")
@@ -156,15 +157,25 @@ func play_walk_animation(direction: Vector2):
 			animated_sprite.play("walk_up")
 
 func check_crush(delta):
-
-	if overlapping_walls.is_empty():
+	# Use get_overlapping_bodies() for reliable detection when squished - 
+	# body_exited can fire unreliably when crushed, and the smaller detector 
+	# may briefly lose overlap. Polling is more accurate.
+	var overlapping_walls_now: Array[Node2D] = []
+	for body in crush_detector.get_overlapping_bodies():
+		if body.is_in_group("moving_wall"):
+			overlapping_walls_now.append(body)
+	
+	if overlapping_walls_now.is_empty():
 		crush_timer = 0.0
 		return
 	
-	for wall in overlapping_walls:
-		if wall.is_moving and not wall.is_paused:
+	for wall in overlapping_walls_now:
+		# Crush when: wall is moving, OR wall is paused at endpoint (player stuck between wall and floor)
+		var wall_moving: bool = wall.is_moving and not wall.is_paused
+		var prog: float = wall.move_progress if "move_progress" in wall else 0.5
+		var wall_paused_at_end: bool = wall.is_paused and (prog >= 0.99 or prog <= 0.01)
+		if wall_moving or wall_paused_at_end:
 			crush_timer += delta
-			
 			if crush_timer >= crush_grace_time:
 				die()
 			return

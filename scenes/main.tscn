@@ -16,7 +16,7 @@ y_sort_enabled = true
 script = ExtResource("1_tefeu")
 
 [node name="Player" parent="." unique_id=1119089927 instance=ExtResource("1_0wfyh")]
-position = Vector2(495, 296)
+position = Vector2(779, 540)
 
 [node name="Radio" parent="." unique_id=1218966091 instance=ExtResource("2_choun")]
 position = Vector2(464, 258)
@@ -79,6 +79,7 @@ auto_start = false
 visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1568162377]
+visible = false
 color = Color(0.12022651, 0.12331874, 0.31013814, 1)
 
 [node name="WoodSign" parent="." unique_id=747002737 instance=ExtResource("8_tipki")]
