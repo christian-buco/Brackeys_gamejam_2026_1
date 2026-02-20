@@ -5,7 +5,13 @@ extends Control
 func _ready() -> void:
 	transition.transitioned.connect(_on_transition_finished)
 	transition.get_node("ColorRect").color = Color(0, 0, 0, 0)  # start transparent so we see the title
+	for sprite in get_tree().get_nodes_in_group("title_sprites"):
+		_play_sprite_later(sprite)
 
+
+func _play_sprite_later(sprite: AnimatedSprite2D) -> void:
+	await get_tree().create_timer(randf_range(0, 2)).timeout
+	sprite.play()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:

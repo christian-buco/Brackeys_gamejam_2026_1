@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bqw7xbl1fkqak" path="res://assets/walls.png" id="6_ia1n6"]
 [ext_resource type="Texture2D" uid="uid://dur25jkpclpal" path="res://assets/bed_top.png" id="7_hiwto"]
 [ext_resource type="PackedScene" uid="uid://d1tj8q48xhei5" path="res://scenes/transition.tscn" id="7_yql1r"]
-[ext_resource type="Texture2D" uid="uid://m5g1xe01rn0s" path="res://assets/light.png" id="8_ia1n6"]
+[ext_resource type="Texture2D" uid="uid://6qpntcva3t0d" path="res://assets/light.png" id="8_ia1n6"]
 [ext_resource type="Texture2D" uid="uid://dsdqnghasf0im" path="res://assets/collectable.png" id="9_w65of"]
+[ext_resource type="Texture2D" uid="uid://ddj2vkp5a5wwq" path="res://assets/collected_anim.png" id="10_ygloa"]
 
 [sub_resource type="Gradient" id="Gradient_w65of"]
 
@@ -242,7 +243,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Letter:position")
+tracks/1/path = NodePath("FlyingStuff/Letter:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -254,7 +255,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Letter:rotation")
+tracks/2/path = NodePath("FlyingStuff/Letter:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -266,7 +267,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Cassette:rotation")
+tracks/3/path = NodePath("FlyingStuff/Cassette:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -278,7 +279,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Cassette:position")
+tracks/4/path = NodePath("FlyingStuff/Cassette:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -290,7 +291,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Painting:position")
+tracks/5/path = NodePath("FlyingStuff/Painting:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -302,7 +303,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Painting:rotation")
+tracks/6/path = NodePath("FlyingStuff/Painting:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -335,7 +336,7 @@ length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = false
-tracks/0/path = NodePath("Cassette:position")
+tracks/0/path = NodePath("FlyingStuff/Cassette:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -347,7 +348,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Cassette:rotation")
+tracks/1/path = NodePath("FlyingStuff/Cassette:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -363,7 +364,7 @@ length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Letter:position")
+tracks/0/path = NodePath("FlyingStuff/Letter:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -379,7 +380,7 @@ length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Painting:position")
+tracks/0/path = NodePath("FlyingStuff/Painting:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -391,7 +392,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Painting:rotation")
+tracks/1/path = NodePath("FlyingStuff/Painting:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -409,6 +410,99 @@ _data = {
 &"letter": SubResource("Animation_hiwto"),
 &"painting": SubResource("Animation_ygloa")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgba0"]
+atlas = ExtResource("9_w65of")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rapul"]
+atlas = ExtResource("10_ygloa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh687"]
+atlas = ExtResource("10_ygloa")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ma10x"]
+atlas = ExtResource("10_ygloa")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuck5"]
+atlas = ExtResource("10_ygloa")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72l5o"]
+atlas = ExtResource("10_ygloa")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udoxq"]
+atlas = ExtResource("10_ygloa")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_naap0"]
+atlas = ExtResource("10_ygloa")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61c27"]
+atlas = ExtResource("9_w65of")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ga2k0"]
+atlas = ExtResource("9_w65of")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w65of"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgba0")
+}],
+"loop": false,
+"name": &"cassette",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rapul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mh687")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ma10x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fuck5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72l5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udoxq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_naap0")
+}],
+"loop": true,
+"name": &"collect",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61c27")
+}],
+"loop": false,
+"name": &"letter",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ga2k0")
+}],
+"loop": false,
+"name": &"painting",
+"speed": 5.0
+}]
 
 [node name="Title" type="Control" unique_id=107416331]
 layout_mode = 3
@@ -552,30 +646,82 @@ text = "Press Any Key"
 horizontal_alignment = 1
 
 [node name="Transition" parent="." unique_id=1370941764 instance=ExtResource("7_yql1r")]
-visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=125337719]
 libraries/ = SubResource("AnimationLibrary_pyl7j")
 autoplay = &"RESET"
 
-[node name="Letter" type="Sprite2D" parent="." unique_id=315921841]
+[node name="FlyingStuff" type="Control" parent="." unique_id=1333246452]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Letter" type="Sprite2D" parent="FlyingStuff" unique_id=315921841]
 position = Vector2(-68, 253)
 scale = Vector2(2.59375, 2.59375)
 texture = ExtResource("9_w65of")
 hframes = 4
 frame = 2
 
-[node name="Cassette" type="Sprite2D" parent="." unique_id=648060596]
+[node name="Cassette" type="Sprite2D" parent="FlyingStuff" unique_id=648060596]
 position = Vector2(1186, 493)
 rotation = 6.2831855
 scale = Vector2(2, 2)
 texture = ExtResource("9_w65of")
 hframes = 4
 
-[node name="Painting" type="Sprite2D" parent="." unique_id=1959142763]
+[node name="Painting" type="Sprite2D" parent="FlyingStuff" unique_id=1959142763]
 position = Vector2(-62, 567)
 rotation = 6.2831855
 scale = Vector2(3, 3)
 texture = ExtResource("9_w65of")
 hframes = 4
 frame = 1
+
+[node name="BubbleStuff" type="Node2D" parent="." unique_id=110949497]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BubbleStuff" unique_id=1827180620 groups=["title_sprites"]]
+position = Vector2(46, 474)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w65of")
+animation = &"collect"
+centered = false
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="BubbleStuff" unique_id=1377286649 groups=["title_sprites"]]
+position = Vector2(219, 421)
+sprite_frames = SubResource("SpriteFrames_w65of")
+animation = &"collect"
+centered = false
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="BubbleStuff" unique_id=2060676704 groups=["title_sprites"]]
+position = Vector2(341, 531)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w65of")
+animation = &"collect"
+centered = false
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="BubbleStuff" unique_id=1680192459 groups=["title_sprites"]]
+position = Vector2(514, 539)
+sprite_frames = SubResource("SpriteFrames_w65of")
+animation = &"collect"
+centered = false
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="BubbleStuff" unique_id=1948490579 groups=["title_sprites"]]
+position = Vector2(797, 414)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w65of")
+animation = &"collect"
+centered = false
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="BubbleStuff" unique_id=988494476 groups=["title_sprites"]]
+position = Vector2(941, 510)
+sprite_frames = SubResource("SpriteFrames_w65of")
+animation = &"collect"
+centered = false
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="BubbleStuff" unique_id=1158855042 groups=["title_sprites"]]
+position = Vector2(1065, 390)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w65of")
+animation = &"collect"
+centered = false
