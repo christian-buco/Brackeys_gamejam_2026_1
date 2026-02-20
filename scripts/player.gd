@@ -106,7 +106,10 @@ func _physics_process(delta: float) -> void:
 	#else:
 		#distance_moved = 0
 	#last_position = global_position
-		
+	if $RayCast2D.is_colliding():
+		var collider = $RayCast2D.get_collider()
+		if collider.is_in_group("static_wall") or collider is TileMap:
+			die()
 	check_crush(delta)
 	
 	if input_vector != Vector2.ZERO:
@@ -156,19 +159,29 @@ func play_walk_animation(direction: Vector2):
 			animated_sprite.play("walk_up")
 
 func check_crush(delta):
-
 	if overlapping_walls.is_empty():
 		crush_timer = 0.0
 		return
 	
+	var touching_static = false
+	var touching_moving = false
+	
 	for wall in overlapping_walls:
-		if wall.is_moving and not wall.is_paused:
-			crush_timer += delta
-			
-			if crush_timer >= crush_grace_time:
-				die()
-			return
-	crush_timer = 0.0
+		if wall.is_in_group("static_wall") or wall is TileMap:
+			touching_static = true
+		elif wall.is_in_group("moving_wall"):
+			if wall.is_moving and not wall.is_paused:
+				touching_moving = true
+	
+	# If pinned against a static wall by a moving one, or between two moving ones
+	if touching_moving:
+		crush_timer += delta
+		if crush_timer >= crush_grace_time:
+			die()
+	else:
+		crush_timer = 0.0
+
+	return
 
 func die():
 	if not can_move:
@@ -191,7 +204,7 @@ func die():
 
 
 func _on_crush_detector_body_entered(body: Node2D) -> void:
-	if body.is_in_group("moving_wall"):
+	if body.is_in_group("moving_wall") or body.is_in_group("static_wall"):
 		overlapping_walls.append(body)
 
 

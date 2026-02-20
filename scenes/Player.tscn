@@ -174,10 +174,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o5qli"]
-radius = 3.0
+radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v6fml"]
-radius = 2.0
+radius = 4.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1119089927]
 y_sort_enabled = true
@@ -208,6 +208,7 @@ limit_right = 1152
 limit_bottom = 640
 
 [node name="CrushingDetector" type="Area2D" parent="." unique_id=1597231874]
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CrushingDetector" unique_id=1848974174]
 position = Vector2(0, -3)
@@ -242,6 +243,10 @@ texture = ExtResource("4_mdl7e")
 offset = Vector2(0, -76)
 hframes = 4
 frame = 1
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1774673083]
+position = Vector2(0, -3)
+target_position = Vector2(0, 0)
 
 [connection signal="body_entered" from="CrushingDetector" to="." method="_on_crush_detector_body_entered"]
 [connection signal="body_exited" from="CrushingDetector" to="." method="_on_crush_detector_body_exited"]
