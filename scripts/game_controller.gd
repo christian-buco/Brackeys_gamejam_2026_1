@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var map: TileMapLayer = $Tilemap/Maze
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,7 +15,19 @@ func on_item_collected(item_type:String):
 		"cassette":
 			pass
 		"painting":
-			pass
+			var tween = create_tween()
+			tween.tween_property(map, "modulate:a", 0.0, 0.3)
+			await tween.finished
+
+			# 2. Change the Map
+			map.clear()
+			# Note: Vector2i.ONE is (1, 1). Use Vector2i.ZERO for the top-left corner (0,0).
+			map.set_pattern(Vector2i(0, 1), map.tile_set.get_pattern(1))
+
+			# 3. Fade In (Must create a NEW tween here)
+			var tween_in = create_tween()
+			tween_in.tween_property(map, "modulate:a", 1.0, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			await tween_in.finished
 
 func show_letter_story():
 	$CanvasLayer/LetterPopup.show_story("

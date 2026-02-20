@@ -132,8 +132,30 @@ func die() -> void:
 	Engine.time_scale = 0.1
 	await get_tree().create_timer(0.15).timeout
 	Engine.time_scale = 1.0
-	get_tree().reload_current_scene()
+	
+	# fade out
+	await fade_out()
 
+	var home = get_tree().current_scene.get_node("respawn_point/Marker2D")
+	global_position = home.global_position
+	animated_sprite.scale = Vector2.ONE
+	
+	await fade_in()
+	can_move = true
+	#get_tree().reload_current_scene()
+
+func fade_out() -> void:
+	var fade_rect = get_tree().current_scene.get_node("FadeLayer/FadeRect")
+	var tween = create_tween()
+	tween.tween_property(fade_rect, "modulate:a", 1.0, 0.4)
+	await tween.finished
+
+func fade_in() -> void:
+	var fade_rect = get_tree().current_scene.get_node("FadeLayer/FadeRect")
+	var tween = create_tween()
+	tween.tween_property(fade_rect, "modulate:a", 0.0, 0.4)
+	await tween.finished
+	
 func emit_dust() -> void:
 	$CPUParticles2D.position = Vector2(randf_range(-4, 4), randf_range(0, 2))
 	$CPUParticles2D.restart()
@@ -142,7 +164,7 @@ func _process(delta: float) -> void:
 	if shake_strength > 0:
 		shake_strength = lerp(shake_strength, 0.0, 10 * delta)
 		camera_2d.offset = Vector2(randf_range(-shake_strength, shake_strength), randf_range(-shake_strength, shake_strength))
-	$PointLight2D.energy = 0.5 + sin(Time.get_ticks_msec() * 0.004) * 0.15
+	$PointLight2D.energy = 0.55 + sin(Time.get_ticks_msec() * 0.004) * 0.15
 
 func play_walk_animation(dir: Vector2) -> void:
 	if abs(dir.x) > abs(dir.y):

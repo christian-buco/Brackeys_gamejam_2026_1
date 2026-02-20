@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://n8evtfaa8dbx" path="res://scripts/radio.gd" id="1_7h80l"]
 [ext_resource type="Texture2D" uid="uid://jxpc2e76ow73" path="res://assets/radio.png" id="2_4b7o3"]
-[ext_resource type="AudioStream" uid="uid://qj87qt73kkpm" path="res://assets/audio/cassette.wav" id="3_3mpwk"]
+[ext_resource type="AudioStream" uid="uid://cypmo8alcbf30" path="res://assets/audio/cassette_demonic.wav" id="3_7h80l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y83x7"]
 radius = 22.0
@@ -22,7 +22,7 @@ offset = Vector2(0, -16)
 shape = SubResource("CircleShape2D_y83x7")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1786723215]
-stream = ExtResource("3_3mpwk")
+stream = ExtResource("3_7h80l")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
