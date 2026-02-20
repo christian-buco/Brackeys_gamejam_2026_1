@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d3mfcgcowh2pl" path="res://scenes/Player.tscn" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://blrjbmosghywf" path="res://scripts/game_controller.gd" id="1_tefeu"]
+[ext_resource type="PackedScene" uid="uid://c3osldlh5pfx8" path="res://scenes/radio.tscn" id="2_choun"]
 [ext_resource type="PackedScene" uid="uid://c4wxgimjxx740" path="res://scenes/MovingWall.tscn" id="3_sugp2"]
 [ext_resource type="TileSet" uid="uid://clrg1pndw1pvb" path="res://assets/tileset.tres" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cfiwssm70trsj" path="res://scenes/bed.tscn" id="6_o6xl0"]
@@ -14,16 +15,19 @@
 y_sort_enabled = true
 script = ExtResource("1_tefeu")
 
-[node name="Player" parent="." unique_id=1119089927 instance=ExtResource("1_0wfyh")]
-position = Vector2(519, 533)
+[node name="Radio" parent="." unique_id=1341902146 instance=ExtResource("2_choun")]
+position = Vector2(506, 256)
 
-[node name="Bed" parent="." unique_id=1341902146 instance=ExtResource("6_o6xl0")]
-position = Vector2(495, 288)
+[node name="Player" parent="." unique_id=1119089927 instance=ExtResource("1_0wfyh")]
+position = Vector2(495, 296)
+
+[node name="Bed" parent="." unique_id=1149740249 instance=ExtResource("6_o6xl0")]
+position = Vector2(470, 260)
 
 [node name="Collectables" type="Node2D" parent="." unique_id=444681574]
 
 [node name="Cassette" parent="Collectables" unique_id=577016233 instance=ExtResource("6_tefeu")]
-position = Vector2(32, 32)
+position = Vector2(568, 274)
 
 [node name="Painting" parent="Collectables" unique_id=1287932757 instance=ExtResource("6_tefeu")]
 position = Vector2(832, 224)

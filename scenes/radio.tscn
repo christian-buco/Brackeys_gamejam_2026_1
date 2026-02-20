@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c3osldlh5pfx8"]
+
+[ext_resource type="Script" uid="uid://n8evtfaa8dbx" path="res://scripts/radio.gd" id="1_7h80l"]
+[ext_resource type="Texture2D" uid="uid://jxpc2e76ow73" path="res://assets/radio.png" id="2_4b7o3"]
+[ext_resource type="AudioStream" uid="uid://qj87qt73kkpm" path="res://assets/audio/cassette.wav" id="3_3mpwk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fqty4"]
+radius = 21.023796
+
+[node name="Radio" type="Area2D" unique_id=1341902146]
+scale = Vector2(0.6, 0.6)
+collision_mask = 2
+script = ExtResource("1_7h80l")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=618033305]
+texture = ExtResource("2_4b7o3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=428029353]
+shape = SubResource("CircleShape2D_fqty4")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=365968701]
+stream = ExtResource("3_3mpwk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
