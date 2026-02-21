@@ -102,3 +102,8 @@ func _update_pause_items() -> void:
 func _kill_overlay_tween() -> void:
 	if overlay_tween != null and overlay_tween.is_running():
 		overlay_tween.kill()
+		
+func change_objective():
+	var objective_label = $PauseOverlay/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Objective
+	objective_label.text = "Objective: Return to bed and sleep"
+	

@@ -23,8 +23,6 @@ func end_game_check():
 	
 	# Create a list of keys (item names) where the value is 0
 	var missing_items = inventory.keys().filter(func(item): return inventory[item] == 0)
-
-	missing_items.clear()
 	
 	if missing_items.is_empty():
 		await fade_out()

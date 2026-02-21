@@ -1,6 +1,8 @@
 extends Node2D
 
 @onready var map: TileMapLayer = $Tilemap/Maze
+var inventory: Dictionary = {"cassette": 0, "painting": 0, "letter": 0}
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,11 +13,15 @@ func _ready() -> void:
 func on_item_collected(item_type:String):
 	match item_type:
 		"letter":
-			
+			inventory["letter"] = 1
+			objective_check_collectible()
 			show_letter_story()
 		"cassette":
-			pass
+			inventory["cassette"] = 1
+			objective_check_collectible()
 		"painting":
+			inventory["painting"] = 1
+			objective_check_collectible()
 			var tween = create_tween()
 			tween.tween_property(map, "modulate:a", 0.0, 0.3)
 			await tween.finished
@@ -30,6 +36,19 @@ func on_item_collected(item_type:String):
 			tween_in.tween_property(map, "modulate:a", 1.0, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 			await tween_in.finished
 
+func objective_check_collectible():
+	var hud = $HUD
+	var player = $Player
+	
+	var missing_items = inventory.keys().filter(func(item): return inventory[item] == 0)
+	
+	if missing_items.is_empty():
+		hud.change_objective()
+		
+	else:
+		# Join the missing items with a comma for a clean message
+		var list_string = ", ".join(missing_items)
+		print("You are missing: " + list_string)
 
 func show_letter_story():
 	$CanvasLayer/LetterPopup.show_story("

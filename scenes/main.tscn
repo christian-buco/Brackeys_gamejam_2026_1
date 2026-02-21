@@ -47,14 +47,14 @@ position = Vector2(439, 259)
 [node name="Collectables" type="Node2D" parent="." unique_id=444681574]
 
 [node name="Cassette" parent="Collectables" unique_id=577016233 instance=ExtResource("6_tefeu")]
-position = Vector2(32, 512)
+position = Vector2(558, 293)
 
 [node name="Painting" parent="Collectables" unique_id=1287932757 instance=ExtResource("6_tefeu")]
-position = Vector2(448, 32)
+position = Vector2(554, 256)
 item_type = "painting"
 
 [node name="letter" parent="Collectables" unique_id=1361132102 instance=ExtResource("6_tefeu")]
-position = Vector2(832, 224)
+position = Vector2(522, 272)
 item_type = "letter"
 
 [node name="Tilemap" type="Node2D" parent="." unique_id=347663639]
