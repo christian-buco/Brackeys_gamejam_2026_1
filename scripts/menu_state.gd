@@ -1,14 +1,14 @@
 extends Control
 
 @onready var menu: VBoxContainer = $NotDark/Menu
-@onready var panel: Panel = $CenterContainer/ControlPanel
-@onready var panel_label: Label = $CenterContainer/ControlPanel/Controls
-@onready var credits_panel: Panel = $CenterContainer/CreditsPanel
+@onready var panel: Panel = $NotDark/CenterContainer/ControlPanel
+@onready var panel_label: Label = $NotDark/CenterContainer/ControlPanel/Controls
+@onready var credits_panel: Panel = $NotDark/CenterContainer/CreditsPanel
 @onready var play_button: Button = $NotDark/Menu/Play
 @onready var controls_button: Button = $NotDark/Menu/Controls
 @onready var credits_button: Button = $NotDark/Menu/Credits
 @onready var quit_button: Button = $NotDark/Menu/Quit
-@onready var back_button: Button = $CenterContainer/ControlPanel/Back
+@onready var back_button: Button = $NotDark/CenterContainer/ControlPanel/Back
 @onready var sfx_select: AudioStreamPlayer = $SfxSelect
 const NORMAL_COLOR := Color(0.8, 0.8, 0.8, 1)
 const FOCUS_COLOR := Color(1, 1, 1, 1)
@@ -50,7 +50,7 @@ func _on_transition_transitioned() -> void:
 
 
 func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/title.tscn")
+	_set_menu_active(true)
 
 func _setup_button_focus() -> void:
 	for b in menu_buttons:
@@ -98,7 +98,7 @@ func _on_button_focus_exited(button: Button) -> void:
 
 
 func _on_credits_pressed() -> void:
-	panel_label.text = "Credits: Beikon, rezmayyy\nAssets: " #Hard coded idc
+	panel_label.text = "Credits: Beikon, rezmayyy\n" #Hard coded idc
 	_set_menu_active(false)
 
 func _on_quit_pressed() -> void:

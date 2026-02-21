@@ -3,6 +3,16 @@
 [ext_resource type="Script" uid="uid://cydg236iqfcgs" path="res://scripts/ending.gd" id="1_mqjok"]
 [ext_resource type="FontFile" uid="uid://mjsvug80he8r" path="res://assets/fonts/PixelOperator8.ttf" id="2_fyrdv"]
 
+[sub_resource type="Gradient" id="Gradient_fyrdv"]
+offsets = PackedFloat32Array(0, 0.5746888)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2x1jc"]
+gradient = SubResource("Gradient_fyrdv")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
 [node name="Ending" type="Control" unique_id=2024727058]
 layout_mode = 3
 anchors_preset = 0
@@ -24,3 +34,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 visible_characters = 38
 visible_ratio = 0.477
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1675154311]
+modulate = Color(0.22145176, 0.053754948, 0.28980058, 1)
+layout_mode = 0
+offset_right = 1158.0
+offset_bottom = 646.0
+texture = SubResource("GradientTexture2D_2x1jc")

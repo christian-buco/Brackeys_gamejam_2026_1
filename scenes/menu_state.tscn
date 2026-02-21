@@ -264,63 +264,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_bhutk")
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=62492174]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -19.0
-offset_top = -27.0
-offset_right = 1133.0
-offset_bottom = 620.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ControlPanel" type="Panel" parent="CenterContainer" unique_id=1354836516]
-visible = false
-layout_mode = 2
-
-[node name="Controls" type="Label" parent="CenterContainer/ControlPanel" unique_id=1684081406]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -81.0
-offset_top = -11.5
-offset_right = 81.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_lvak4")
-text = "WASD to move"
-
-[node name="Back" type="Button" parent="CenterContainer/ControlPanel" unique_id=783101402]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -22.5
-offset_top = 97.0
-offset_right = 22.5
-offset_bottom = 128.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_lvak4")
-text = "Back"
-
-[node name="CreditsPanel" type="Panel" parent="CenterContainer" unique_id=334367915]
-layout_mode = 2
-
-[node name="Credits" type="Label" parent="CenterContainer/CreditsPanel" unique_id=102448692]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=586195551]
 color = Color(0.24985075, 0.24985075, 0.24985075, 1)
 
@@ -360,6 +303,61 @@ text = "Credits"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_lvak4")
 text = "Quit"
+
+[node name="CenterContainer" type="CenterContainer" parent="NotDark" unique_id=62492174]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.0
+offset_top = -327.0
+offset_right = 577.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ControlPanel" type="Panel" parent="NotDark/CenterContainer" unique_id=1354836516]
+layout_mode = 2
+
+[node name="Controls" type="Label" parent="NotDark/CenterContainer/ControlPanel" unique_id=1684081406]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -11.5
+offset_right = 81.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_lvak4")
+text = "WASD to move"
+
+[node name="Back" type="Button" parent="NotDark/CenterContainer/ControlPanel" unique_id=783101402]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.5
+offset_top = 97.0
+offset_right = 22.5
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_lvak4")
+text = "Back"
+
+[node name="CreditsPanel" type="Panel" parent="NotDark/CenterContainer" unique_id=334367915]
+layout_mode = 2
+
+[node name="Credits" type="Label" parent="NotDark/CenterContainer/CreditsPanel" unique_id=102448692]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=862703890]
 layout_mode = 0
@@ -431,7 +429,6 @@ animation = &"collect"
 autoplay = "collect"
 centered = false
 
-[connection signal="pressed" from="CenterContainer/ControlPanel/Back" to="." method="_on_back_pressed"]
 [connection signal="focus_entered" from="NotDark/Menu/Play" to="." method="_on_play_focus_entered"]
 [connection signal="pressed" from="NotDark/Menu/Play" to="." method="_on_play_pressed"]
 [connection signal="focus_entered" from="NotDark/Menu/Controls" to="." method="_on_controls_focus_entered"]
@@ -439,3 +436,4 @@ centered = false
 [connection signal="focus_entered" from="NotDark/Menu/Credits" to="." method="_on_credits_focus_entered"]
 [connection signal="pressed" from="NotDark/Menu/Credits" to="." method="_on_credits_pressed"]
 [connection signal="focus_entered" from="NotDark/Menu/Quit" to="." method="_on_quit_focus_entered"]
+[connection signal="pressed" from="NotDark/CenterContainer/ControlPanel/Back" to="." method="_on_back_pressed"]
