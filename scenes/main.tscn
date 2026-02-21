@@ -36,7 +36,7 @@ position = Vector2(527, 303)
 [node name="Marker2D" type="Marker2D" parent="respawn_point" unique_id=1228148399]
 
 [node name="Player" parent="." unique_id=1119089927 instance=ExtResource("1_0wfyh")]
-position = Vector2(478, 309)
+position = Vector2(47, 577)
 
 [node name="Radio" parent="." unique_id=1218966091 instance=ExtResource("2_choun")]
 position = Vector2(464, 258)
@@ -85,7 +85,30 @@ tile_set = ExtResource("5_tbgi4")
 [node name="MovingWall" parent="Obstacles" unique_id=1103113379 instance=ExtResource("3_sugp2")]
 position = Vector2(256, 416)
 
-[node name="MovingWall2" parent="Obstacles" unique_id=122014554 instance=ExtResource("3_sugp2")]
+[node name="MovingWall8" parent="Obstacles" unique_id=122014554 instance=ExtResource("3_sugp2")]
+position = Vector2(704, 64)
+
+[node name="MovingWall9" parent="Obstacles" unique_id=1370813690 instance=ExtResource("3_sugp2")]
+position = Vector2(800, 128)
+move_direction = Vector2(0, -1)
+
+[node name="MovingWall10" parent="Obstacles" unique_id=1478805831 instance=ExtResource("3_sugp2")]
+position = Vector2(1056, 96)
+move_direction = Vector2(0, 1)
+
+[node name="MovingWall11" parent="Obstacles" unique_id=2134404142 instance=ExtResource("3_sugp2")]
+position = Vector2(1024, 96)
+move_direction = Vector2(0, 1)
+move_distance = 416.0
+move_speed = 100.0
+
+[node name="MovingWall6" parent="Obstacles" unique_id=2037579046 instance=ExtResource("3_sugp2")]
+position = Vector2(64, 544)
+
+[node name="MovingWall7" parent="Obstacles" unique_id=123796223 instance=ExtResource("3_sugp2")]
+position = Vector2(256, 288)
+
+[node name="MovingWall2" parent="Obstacles" unique_id=1746546319 instance=ExtResource("3_sugp2")]
 position = Vector2(928, 416)
 auto_start = false
 
@@ -112,6 +135,7 @@ auto_start = false
 visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1568162377]
+visible = false
 color = Color(0.19963932, 0.20032448, 0.46793336, 1)
 
 [node name="WoodSign" parent="." unique_id=747002737 instance=ExtResource("8_tipki")]

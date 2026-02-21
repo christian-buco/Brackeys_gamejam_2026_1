@@ -13,13 +13,19 @@ func _ready() -> void:
 func on_item_collected(item_type:String):
 	match item_type:
 		"letter":
+			$respawn_point.position.x = 850
+			$respawn_point.position.y = 225
 			inventory["letter"] = 1
 			objective_check_collectible()
 			show_letter_story()
 		"cassette":
+			$respawn_point.position.x = 50
+			$respawn_point.position.y = 525
 			inventory["cassette"] = 1
 			objective_check_collectible()
 		"painting":
+			$respawn_point.position.x = 450
+			$respawn_point.position.y = 50
 			inventory["painting"] = 1
 			objective_check_collectible()
 			var tween = create_tween()

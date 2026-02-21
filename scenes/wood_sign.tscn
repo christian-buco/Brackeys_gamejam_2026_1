@@ -36,7 +36,6 @@ wait_time = 0.4
 color = Color(0.66882336, 0.4510982, 0.24865928, 1)
 energy = 0.6
 texture = SubResource("GradientTexture2D_v81r5")
-offset = Vector2(0, -16)
 texture_scale = 2.5
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
