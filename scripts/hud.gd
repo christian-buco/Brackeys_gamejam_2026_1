@@ -24,6 +24,8 @@ func _ready() -> void:
 	if player == null:
 		player = get_tree().current_scene.get_node_or_null("Player")
 	_update_icons()
+	self.visible = true 
+	pause_overlay.visible = false  
 
 func _process(_delta: float) -> void:
 	_update_icons()

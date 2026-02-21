@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dnssq4orbway1" path="res://scenes/sign_popup.tscn" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://bcob8emidxbwc" path="res://scripts/hud.gd" id="10_hud"]
 [ext_resource type="Texture2D" uid="uid://dsdqnghasf0im" path="res://assets/collectable.png" id="11_collectable"]
-[ext_resource type="FontFile" uid="uid://mjsvug80he8r" path="res://assets/fonts/PixelOperator8.ttf" id="12_eb6dy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cassette"]
 atlas = ExtResource("11_collectable")
@@ -122,6 +121,7 @@ message = "You are not whole yet. Pieces of you remain in this place. Some are h
 visible = false
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1903626199]
+visible = false
 script = ExtResource("10_hud")
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=1071890422]
@@ -163,7 +163,6 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_letter")
 
 [node name="PauseOverlay" type="Control" parent="HUD" unique_id=1503892037]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -204,15 +203,11 @@ alignment = 1
 
 [node name="Title" type="Label" parent="HUD/PauseOverlay/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1029336106]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("12_eb6dy")
 text = "Paused"
-horizontal_alignment = 1
 
 [node name="Objective" type="Label" parent="HUD/PauseOverlay/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1187913197]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("12_eb6dy")
 text = "Objective: Find Memory Fragments"
-horizontal_alignment = 1
 
 [node name="ItemsIcons" type="HBoxContainer" parent="HUD/PauseOverlay/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1626405706]
 layout_mode = 2
@@ -236,12 +231,6 @@ custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 texture = SubResource("AtlasTexture_letter")
 stretch_mode = 5
-
-[node name="Label" type="Label" parent="HUD/PauseOverlay/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1689593534]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("12_eb6dy")
-text = "\"Where am I ... \""
-horizontal_alignment = 1
 
 [node name="FadeLayer" type="CanvasLayer" parent="." unique_id=269735186]
 
