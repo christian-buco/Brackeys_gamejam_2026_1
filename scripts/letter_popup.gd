@@ -28,6 +28,7 @@ func _process(_delta: float) -> void:
 		label.position = original_label_pos
 
 func show_story(text: String):
+	$AudioStreamPlayer2D.play()
 	label.text = text
 	label.modulate.a = 0
 	
@@ -51,7 +52,7 @@ func show_story(text: String):
 	shake_tween.tween_property(self, "current_shake", 0.0, 1.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 	label.visible_ratio = 0
-	tween.tween_property(label, "visible_ratio", 1.0, 20.0) 
+	tween.tween_property(label, "visible_ratio", 1.0, 15.0) 
 func _input(event):
 	if visible and event.is_action_pressed("interact"):
 		close_letter()

@@ -11,6 +11,7 @@ func _ready() -> void:
 func on_item_collected(item_type:String):
 	match item_type:
 		"letter":
+			
 			show_letter_story()
 		"cassette":
 			pass
@@ -28,6 +29,7 @@ func on_item_collected(item_type:String):
 			var tween_in = create_tween()
 			tween_in.tween_property(map, "modulate:a", 1.0, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 			await tween_in.finished
+
 
 func show_letter_story():
 	$CanvasLayer/LetterPopup.show_story("

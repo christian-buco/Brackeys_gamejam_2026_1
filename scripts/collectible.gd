@@ -55,9 +55,13 @@ func start_bobbing():
 	
 signal collected(item_type)
 
+func play_collected_sound():
+	$AudioStreamPlayer2D.play()
+
 func _on_body_entered(body):
 	if body.name == "Player":
 		body.collect_item(item_type)
+		play_collected_sound()
 		
 		get_tree().current_scene.on_item_collected(item_type)
 		

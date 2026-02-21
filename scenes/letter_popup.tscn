@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bhrji8rjkotru" path="res://scripts/letter_popup.gd" id="1_uytn6"]
 [ext_resource type="Texture2D" uid="uid://dsdqnghasf0im" path="res://assets/collectable.png" id="2_77ven"]
 [ext_resource type="FontFile" uid="uid://mjsvug80he8r" path="res://assets/fonts/PixelOperator8.ttf" id="3_fonq7"]
+[ext_resource type="AudioStream" uid="uid://c2j6aoixiy506" path="res://assets/audio/sfx/paper.wav" id="4_kcemr"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1340662459]
 
@@ -60,3 +61,6 @@ If you ever think back to what we were,
 know that I do too.
 
 And I’m sorry."
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="LetterPopup" unique_id=1095386018]
+stream = ExtResource("4_kcemr")
