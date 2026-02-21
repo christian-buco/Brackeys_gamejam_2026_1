@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bd4jtmkgq2xlh"]
+
+[ext_resource type="Script" uid="uid://cydg236iqfcgs" path="res://scripts/ending.gd" id="1_mqjok"]
+
+[node name="Ending" type="Node2D" unique_id=742673934]
+script = ExtResource("1_mqjok")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=843898341]
+offset_right = 133.0
+offset_bottom = 40.0

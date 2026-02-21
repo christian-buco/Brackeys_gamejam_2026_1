@@ -24,9 +24,20 @@ func end_game_check():
 	# Create a list of keys (item names) where the value is 0
 	var missing_items = inventory.keys().filter(func(item): return inventory[item] == 0)
 
+	missing_items.clear()
+	
 	if missing_items.is_empty():
+		await fade_out()
+		get_tree().change_scene_to_file("res://scenes/ending.tscn")
 		print("You finished the game")
 	else:
 		# Join the missing items with a comma for a clean message
 		var list_string = ", ".join(missing_items)
 		print("You are missing: " + list_string)
+		
+func fade_out(): 
+	var fade_ref = get_tree().current_scene.get_node("FadeLayer/FadeRect")
+	var tween = create_tween()
+	tween.tween_property(fade_ref, "modulate:a", 0.0, 0.4)
+	await tween.finished
+	
