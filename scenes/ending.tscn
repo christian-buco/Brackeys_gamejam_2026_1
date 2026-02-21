@@ -1,10 +1,26 @@
 [gd_scene format=3 uid="uid://bd4jtmkgq2xlh"]
 
 [ext_resource type="Script" uid="uid://cydg236iqfcgs" path="res://scripts/ending.gd" id="1_mqjok"]
+[ext_resource type="FontFile" uid="uid://mjsvug80he8r" path="res://assets/fonts/PixelOperator8.ttf" id="2_fyrdv"]
 
-[node name="Ending" type="Node2D" unique_id=742673934]
+[node name="Ending" type="Control" unique_id=2024727058]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_mqjok")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=843898341]
-offset_right = 133.0
-offset_bottom = 40.0
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=91813320]
+
+[node name="label" type="RichTextLabel" parent="CanvasLayer" unique_id=843898341]
+offset_right = 1150.0
+offset_bottom = 636.0
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("2_fyrdv")
+text = "\"Was I dreaming?
+
+I thought I was alone in the dark.
+
+Every Fragmanet was mine. "
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 25
+visible_ratio = 0.477
