@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://n8evtfaa8dbx" path="res://scripts/radio.gd" id="1_7h80l"]
 [ext_resource type="Texture2D" uid="uid://jxpc2e76ow73" path="res://assets/radio.png" id="2_4b7o3"]
 [ext_resource type="AudioStream" uid="uid://cypmo8alcbf30" path="res://assets/audio/cassette_demonic.wav" id="3_7h80l"]
+[ext_resource type="AudioStream" uid="uid://dkmbsvp8oyrj" path="res://assets/audio/sfx/error.wav" id="4_4b7o3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y83x7"]
 radius = 22.0
@@ -27,6 +28,9 @@ stream = ExtResource("3_7h80l")
 
 [node name="BlinkTimer" type="Timer" parent="." unique_id=1461394375]
 wait_time = 0.4
+
+[node name="error_sfx" type="AudioStreamPlayer2D" parent="." unique_id=314296143]
+stream = ExtResource("4_4b7o3")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

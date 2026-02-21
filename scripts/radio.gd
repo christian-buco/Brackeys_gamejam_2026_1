@@ -39,6 +39,7 @@ func submit_item():
 		print("You submitted cassette")
 		$AudioStreamPlayer2D.play()
 	else:
+		$error_sfx.play()
 		print("You don't have a cassette")
 
 
