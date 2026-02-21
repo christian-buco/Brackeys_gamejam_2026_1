@@ -10,6 +10,20 @@
 [ext_resource type="PackedScene" uid="uid://de7hwwmi1tx0e" path="res://scenes/letter_popup.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://ctqoaqrkp38qc" path="res://scenes/wood_sign.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://dnssq4orbway1" path="res://scenes/sign_popup.tscn" id="9_85g3d"]
+[ext_resource type="Script" uid="uid://bcob8emidxbwc" path="res://scripts/hud.gd" id="10_hud"]
+[ext_resource type="Texture2D" uid="uid://dsdqnghasf0im" path="res://assets/collectable.png" id="11_collectable"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cassette"]
+atlas = ExtResource("11_collectable")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_painting"]
+atlas = ExtResource("11_collectable")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_letter"]
+atlas = ExtResource("11_collectable")
+region = Rect2(64, 0, 32, 32)
 
 [node name="Main" type="Node2D" unique_id=1342932990]
 y_sort_enabled = true
@@ -21,7 +35,7 @@ position = Vector2(527, 303)
 [node name="Marker2D" type="Marker2D" parent="respawn_point" unique_id=1228148399]
 
 [node name="Player" parent="." unique_id=1119089927 instance=ExtResource("1_0wfyh")]
-position = Vector2(526, 303)
+position = Vector2(44, 592)
 
 [node name="Radio" parent="." unique_id=1218966091 instance=ExtResource("2_choun")]
 position = Vector2(464, 258)
@@ -105,6 +119,117 @@ message = "You are not whole yet. Pieces of you remain in this place. Some are h
 
 [node name="CanvasLayer2" parent="." unique_id=1146435598 instance=ExtResource("9_85g3d")]
 visible = false
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1903626199]
+script = ExtResource("10_hud")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=1071890422]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = 44.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer" unique_id=1202510360]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Cassette" type="TextureRect" parent="HUD/MarginContainer/HBoxContainer" unique_id=1588076061]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = SubResource("AtlasTexture_cassette")
+
+[node name="Painting" type="TextureRect" parent="HUD/MarginContainer/HBoxContainer" unique_id=1877969534]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = SubResource("AtlasTexture_painting")
+
+[node name="Letter" type="TextureRect" parent="HUD/MarginContainer/HBoxContainer" unique_id=1213580266]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = SubResource("AtlasTexture_letter")
+
+[node name="PauseOverlay" type="Control" parent="HUD" unique_id=1503892037]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dimmer" type="ColorRect" parent="HUD/PauseOverlay" unique_id=1563718837]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="CenterContainer" type="CenterContainer" parent="HUD/PauseOverlay" unique_id=188301963]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/PauseOverlay/CenterContainer" unique_id=1307675158]
+custom_minimum_size = Vector2(640, 420)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/PauseOverlay/CenterContainer/PanelContainer" unique_id=1951209345]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/PauseOverlay/CenterContainer/PanelContainer/MarginContainer" unique_id=383719585]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Title" type="Label" parent="HUD/PauseOverlay/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1029336106]
+layout_mode = 2
+text = "Paused"
+
+[node name="Objective" type="Label" parent="HUD/PauseOverlay/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1187913197]
+layout_mode = 2
+text = "Objective: Find Memory Fragments"
+
+[node name="ItemsIcons" type="HBoxContainer" parent="HUD/PauseOverlay/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1626405706]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="PauseCassette" type="TextureRect" parent="HUD/PauseOverlay/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ItemsIcons" unique_id=1768359815]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = SubResource("AtlasTexture_cassette")
+stretch_mode = 5
+
+[node name="PausePainting" type="TextureRect" parent="HUD/PauseOverlay/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ItemsIcons" unique_id=1810922105]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = SubResource("AtlasTexture_painting")
+stretch_mode = 5
+
+[node name="PauseLetter" type="TextureRect" parent="HUD/PauseOverlay/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ItemsIcons" unique_id=1365636169]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = SubResource("AtlasTexture_letter")
+stretch_mode = 5
 
 [node name="FadeLayer" type="CanvasLayer" parent="." unique_id=269735186]
 
