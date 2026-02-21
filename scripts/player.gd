@@ -38,7 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func toggle_zoom() -> void:
 	if is_reading_letter:
 		return
-	$Camera2D/AudioStreamPlayer2D.play()
+	$Camera2D/zoom_audio.play()
 	is_zoomed_out = not is_zoomed_out
 	var target := zoomed_out_zoom if is_zoomed_out else normal_zoom
 	create_tween().tween_property(camera_2d, "zoom", Vector2(target, target), 0.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
@@ -132,6 +132,7 @@ func _check_crush(delta: float) -> void:
 func die() -> void:
 	if not can_move:
 		return
+	$death_audio.play()
 	can_move = false
 	velocity = Vector2.ZERO
 	animated_sprite.scale = Vector2(0.6, 1.2)
@@ -179,7 +180,8 @@ func play_walk_animation(dir: Vector2) -> void:
 	else:
 		animated_sprite.play("walk_down" if dir.y > 0 else "walk_up")
 
-func show_icon() -> void:
+func show_icon(icon_index:int) -> void:
+	icon.frame = icon_index
 	create_tween().tween_property(icon, "modulate:a", 1.0, 0.4)
 
 func hide_icon() -> void:

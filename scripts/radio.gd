@@ -9,9 +9,11 @@ func _ready():
 func _on_body_entered(body):
 	if body.name == "Player":
 		player_in_range = body
+		#player_in_range.show_icon(2)
 
 func _on_body_exited(body):
 	if body == player_in_range:
+		#player_in_range.hide_icon()
 		player_in_range = null
 
 func _process(_delta):

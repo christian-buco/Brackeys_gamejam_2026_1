@@ -7,11 +7,11 @@ var player_in_range: Node = null
 func _on_body_entered(body):
 	if body.name == "Player":
 		player_in_range = body
-		player_in_range.show_icon()
+		#player_in_range.show_icon(1)
 
 func _on_body_exited(body):
 	if body == player_in_range:
-		player_in_range.hide_icon()
+		#player_in_range.hide_icon()
 		player_in_range = null
 
 func _process(delta):

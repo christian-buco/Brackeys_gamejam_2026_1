@@ -36,7 +36,7 @@ position = Vector2(527, 303)
 [node name="Marker2D" type="Marker2D" parent="respawn_point" unique_id=1228148399]
 
 [node name="Player" parent="." unique_id=1119089927 instance=ExtResource("1_0wfyh")]
-position = Vector2(842, 294)
+position = Vector2(478, 309)
 
 [node name="Radio" parent="." unique_id=1218966091 instance=ExtResource("2_choun")]
 position = Vector2(464, 258)
@@ -47,14 +47,14 @@ position = Vector2(439, 259)
 [node name="Collectables" type="Node2D" parent="." unique_id=444681574]
 
 [node name="Cassette" parent="Collectables" unique_id=577016233 instance=ExtResource("6_tefeu")]
-position = Vector2(558, 293)
+position = Vector2(32, 512)
 
 [node name="Painting" parent="Collectables" unique_id=1287932757 instance=ExtResource("6_tefeu")]
-position = Vector2(554, 256)
+position = Vector2(448, 32)
 item_type = "painting"
 
 [node name="letter" parent="Collectables" unique_id=1361132102 instance=ExtResource("6_tefeu")]
-position = Vector2(522, 272)
+position = Vector2(832, 224)
 item_type = "letter"
 
 [node name="Tilemap" type="Node2D" parent="." unique_id=347663639]
