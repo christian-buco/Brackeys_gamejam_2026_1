@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bimewtxr1abty" path="res://assets/player.png" id="1_p0vlq"]
 [ext_resource type="Script" uid="uid://d05iepym3s6y7" path="res://scripts/player.gd" id="1_v6fml"]
 [ext_resource type="Texture2D" uid="uid://svrh6qk88wms" path="res://assets/icons.png" id="4_mdl7e"]
+[ext_resource type="AudioStream" uid="uid://bf28ggkl4baya" path="res://assets/audio/zoom.wav" id="4_qu4a1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6fml"]
 atlas = ExtResource("1_p0vlq")
@@ -255,6 +256,10 @@ frame = 1
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1774673083]
 position = Vector2(0, -3)
 target_position = Vector2(0, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1951160998]
+stream = ExtResource("4_qu4a1")
+volume_db = -10.0
 
 [connection signal="body_entered" from="CrushingDetector" to="." method="_on_crush_detector_body_entered"]
 [connection signal="body_exited" from="CrushingDetector" to="." method="_on_crush_detector_body_exited"]

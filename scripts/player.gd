@@ -38,6 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func toggle_zoom() -> void:
 	if is_reading_letter:
 		return
+	$AudioStreamPlayer2D.play()
 	is_zoomed_out = not is_zoomed_out
 	var target := zoomed_out_zoom if is_zoomed_out else normal_zoom
 	create_tween().tween_property(camera_2d, "zoom", Vector2(target, target), 0.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)

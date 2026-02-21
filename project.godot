@@ -23,6 +23,11 @@ buses/default_bus_layout="uid://cetpjiu1dvuto"
 
 Music="*uid://c80otmtyhyaim"
 
+[display]
+
+window/size/viewport_height=640
+window/stretch/mode="canvas_items"
+
 [input]
 
 interact={

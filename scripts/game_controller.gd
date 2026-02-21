@@ -22,7 +22,7 @@ func on_item_collected(item_type:String):
 			# 2. Change the Map
 			map.clear()
 			# Note: Vector2i.ONE is (1, 1). Use Vector2i.ZERO for the top-left corner (0,0).
-			map.set_pattern(Vector2i(0, 1), map.tile_set.get_pattern(1))
+			map.set_pattern(Vector2i(0, 0), map.tile_set.get_pattern(1))
 
 			# 3. Fade In (Must create a NEW tween here)
 			var tween_in = create_tween()
