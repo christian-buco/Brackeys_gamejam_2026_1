@@ -407,6 +407,7 @@ autoplay = "idle"
 offset = Vector2(0, -13.105)
 
 [node name="Transition" parent="." unique_id=1370941764 instance=ExtResource("3_dntu8")]
+visible = false
 
 [node name="BubbleStuff" type="Control" parent="." unique_id=965395044]
 anchors_preset = 0
