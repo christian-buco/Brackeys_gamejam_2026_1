@@ -121,7 +121,6 @@ message = "You are not whole yet. Pieces of you remain in this place. Some are h
 visible = false
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1903626199]
-visible = false
 script = ExtResource("10_hud")
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=1071890422]
