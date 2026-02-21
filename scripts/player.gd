@@ -13,8 +13,8 @@ var is_reading_letter := false
 var can_move := true
 
 @export_group("Crush")
-@export var crush_grace_time: float = 0.2
-const CRUSH_TOUCH_DISTANCE: float = 20.0  # Player r5 + wall half 16 + margin
+@export var crush_grace_time: float = 0.15
+const CRUSH_TOUCH_DISTANCE: float = 18.0  # Player r5 + wall half 16 + margin
 
 var crush_timer: float = 0.0
 var shake_strength: float = 0.0
