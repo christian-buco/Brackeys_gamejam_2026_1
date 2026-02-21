@@ -36,7 +36,7 @@ position = Vector2(527, 303)
 [node name="Marker2D" type="Marker2D" parent="respawn_point" unique_id=1228148399]
 
 [node name="Player" parent="." unique_id=1119089927 instance=ExtResource("1_0wfyh")]
-position = Vector2(47, 577)
+position = Vector2(527, 303)
 
 [node name="Radio" parent="." unique_id=1218966091 instance=ExtResource("2_choun")]
 position = Vector2(464, 258)
@@ -135,7 +135,6 @@ auto_start = false
 visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1568162377]
-visible = false
 color = Color(0.19963932, 0.20032448, 0.46793336, 1)
 
 [node name="WoodSign" parent="." unique_id=747002737 instance=ExtResource("8_tipki")]
