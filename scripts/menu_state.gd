@@ -37,7 +37,7 @@ func _ready() -> void:
 	_suppress_focus_sfx = false
 
 func _on_controls_pressed() -> void:
-	panel_label.text = "WASD to move"
+	panel_label.text = "WASD to move\n\nSPACE to zoom\n\nE to interact\n\nESC to pause"
 	_set_menu_active(false)
 
 

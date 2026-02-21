@@ -146,15 +146,17 @@ visible = false
 script = ExtResource("10_hud")
 
 [node name="PauseHint" type="Label" parent="HUD" unique_id=1184665724]
-offset_left = -8.0
-offset_top = 609.0
-offset_right = 122.0
-offset_bottom = 632.0
+offset_left = -3.0
+offset_top = 586.0
+offset_right = 127.0
+offset_bottom = 627.0
 theme_override_colors/font_color = Color(0.53975606, 0.39621428, 0.7261827, 1)
 theme_override_fonts/font = ExtResource("12_eb6dy")
 theme_override_font_sizes/font_size = 8
-text = "ESC: Pause 
-Space: Zoom"
+text = "WASD: Move
+Space: Zoom
+E: Interact
+ESC: Pause "
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD" unique_id=1071890422]
@@ -280,9 +282,10 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("12_eb6dy")
 text = "
-Controls: WASD to move, E to interact
 
-Esc to return"
+Esc to return
+
+"
 horizontal_alignment = 1
 
 [node name="FadeLayer" type="CanvasLayer" parent="." unique_id=269735186]
