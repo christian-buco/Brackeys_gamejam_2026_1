@@ -19,7 +19,7 @@ const CRUSH_TOUCH_DISTANCE: float = 26.0  # Player r5 + wall half 16 + margin
 var crush_timer: float = 0.0
 var shake_strength: float = 0.0
 
-var step_distance: float = 64.0
+var step_distance: float = 16.0
 var distance_moved: float = 0.0
 var last_position: Vector2 = Vector2.ZERO
 var was_moving: bool = false
@@ -38,7 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func toggle_zoom() -> void:
 	if is_reading_letter:
 		return
-	$AudioStreamPlayer2D.play()
+	$Camera2D/AudioStreamPlayer2D.play()
 	is_zoomed_out = not is_zoomed_out
 	var target := zoomed_out_zoom if is_zoomed_out else normal_zoom
 	create_tween().tween_property(camera_2d, "zoom", Vector2(target, target), 0.4).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
@@ -68,11 +68,13 @@ func _physics_process(delta: float) -> void:
 	if moving:
 		if not was_moving:
 			emit_dust()
+			play_footstep()
 			distance_moved = 0
 		distance_moved += (global_position - last_position).length()
 		if distance_moved >= step_distance:
 			distance_moved = 0
 			emit_dust()
+			play_footstep()
 	else:
 		distance_moved = 0
 	was_moving = moving
@@ -91,6 +93,10 @@ func _physics_process(delta: float) -> void:
 		play_walk_animation(input)
 	else:
 		animated_sprite.play("idle")
+
+func play_footstep():
+	if not $footsteps_audio.playing:
+		$footsteps_audio.play()
 
 func _check_crush(delta: float) -> void:
 	# Crushed = moving wall is touching us AND we're pressed against something (floor, maze, etc.)

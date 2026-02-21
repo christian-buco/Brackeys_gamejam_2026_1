@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://de7hwwmi1tx0e" path="res://scenes/letter_popup.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://ctqoaqrkp38qc" path="res://scenes/wood_sign.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://dnssq4orbway1" path="res://scenes/sign_popup.tscn" id="9_85g3d"]
-[ext_resource type="Script" uid="uid://bcob8emidxbwc" path="res://scripts/hud.gd" id="10_hud"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="10_hud"]
 [ext_resource type="Texture2D" uid="uid://dsdqnghasf0im" path="res://assets/collectable.png" id="11_collectable"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cassette"]

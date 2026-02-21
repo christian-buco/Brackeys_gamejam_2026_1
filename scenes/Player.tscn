@@ -4,6 +4,10 @@
 [ext_resource type="Script" uid="uid://d05iepym3s6y7" path="res://scripts/player.gd" id="1_v6fml"]
 [ext_resource type="Texture2D" uid="uid://svrh6qk88wms" path="res://assets/icons.png" id="4_mdl7e"]
 [ext_resource type="AudioStream" uid="uid://bf28ggkl4baya" path="res://assets/audio/zoom.wav" id="4_qu4a1"]
+[ext_resource type="AudioStream" uid="uid://cwer83u1aw3ei" path="res://assets/audio/sfx/DIRT - Walk Short 1.wav" id="5_khinc"]
+[ext_resource type="AudioStream" uid="uid://ii5lccl24y81" path="res://assets/audio/sfx/DIRT - Walk Short 2.wav" id="6_bruh7"]
+[ext_resource type="AudioStream" uid="uid://ujqsp008gksy" path="res://assets/audio/sfx/DIRT - Walk Short 3.wav" id="7_6eyey"]
+[ext_resource type="AudioStream" uid="uid://emkpqnp6jas2" path="res://assets/audio/sfx/DIRT - Walk Short 4.wav" id="8_d3wef"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6fml"]
 atlas = ExtResource("1_p0vlq")
@@ -188,6 +192,13 @@ fill = 1
 fill_from = Vector2(0.517094, 0.4871795)
 fill_to = Vector2(0.7863248, 0.1965812)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mdl7e"]
+streams_count = 4
+stream_0/stream = ExtResource("5_khinc")
+stream_1/stream = ExtResource("6_bruh7")
+stream_2/stream = ExtResource("7_6eyey")
+stream_3/stream = ExtResource("8_d3wef")
+
 [node name="Player" type="CharacterBody2D" unique_id=1119089927]
 y_sort_enabled = true
 collision_layer = 2
@@ -214,6 +225,11 @@ limit_left = 0
 limit_top = 0
 limit_right = 1152
 limit_bottom = 640
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Camera2D" unique_id=1951160998]
+position = Vector2(-1, 0)
+stream = ExtResource("4_qu4a1")
+volume_db = -10.0
 
 [node name="CrushingDetector" type="Area2D" parent="." unique_id=1597231874]
 collision_layer = 3
@@ -257,9 +273,8 @@ frame = 1
 position = Vector2(0, -3)
 target_position = Vector2(0, 0)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1951160998]
-stream = ExtResource("4_qu4a1")
-volume_db = -10.0
+[node name="footsteps_audio" type="AudioStreamPlayer2D" parent="." unique_id=272451712]
+stream = SubResource("AudioStreamRandomizer_mdl7e")
 
 [connection signal="body_entered" from="CrushingDetector" to="." method="_on_crush_detector_body_entered"]
 [connection signal="body_exited" from="CrushingDetector" to="." method="_on_crush_detector_body_exited"]
