@@ -594,7 +594,8 @@ offset_bottom = 298.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_4ignj")
 theme_override_font_sizes/font_size = 32
-text = "The Lost Objects"
+text = "Fragments"
+horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="TextStuff/VBoxContainer/TitleText" unique_id=1828569344]
 offset_left = 362.0
@@ -604,7 +605,8 @@ offset_bottom = 296.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_4ignj")
 theme_override_font_sizes/font_size = 32
-text = "The Lost Objects"
+text = "Fragments"
+horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="TextStuff/VBoxContainer/TitleText" unique_id=61471013]
 offset_left = 364.0
@@ -614,7 +616,8 @@ offset_bottom = 298.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_4ignj")
 theme_override_font_sizes/font_size = 32
-text = "The Lost Objects"
+text = "Fragments"
+horizontal_alignment = 1
 
 [node name="Label5" type="Label" parent="TextStuff/VBoxContainer/TitleText" unique_id=1035790028]
 offset_left = 362.0
@@ -624,7 +627,8 @@ offset_bottom = 300.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_4ignj")
 theme_override_font_sizes/font_size = 32
-text = "The Lost Objects"
+text = "Fragments"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="TextStuff/VBoxContainer/TitleText" unique_id=964981288]
 offset_left = 362.0
@@ -633,7 +637,8 @@ offset_right = 778.0
 offset_bottom = 298.0
 theme_override_fonts/font = ExtResource("1_4ignj")
 theme_override_font_sizes/font_size = 32
-text = "The Lost Objects"
+text = "Fragments"
+horizontal_alignment = 1
 
 [node name="PressKey" type="Label" parent="TextStuff" unique_id=553015482]
 layout_mode = 0
