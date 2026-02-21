@@ -112,7 +112,7 @@ auto_start = false
 visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1568162377]
-color = Color(0.12022651, 0.12331874, 0.31013814, 1)
+color = Color(0.19963932, 0.20032448, 0.46793336, 1)
 
 [node name="WoodSign" parent="." unique_id=747002737 instance=ExtResource("8_tipki")]
 position = Vector2(527, 420)

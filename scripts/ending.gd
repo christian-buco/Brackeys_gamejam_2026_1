@@ -41,7 +41,8 @@ func show_ending():
 		await sentence_fade_out()
 		show_ending()
 	else:
-		return
+		await sentence_fade_out()
+		get_tree().change_scene_to_file("res://scenes/menu_state.tscn")
 	
 func sentence_fade_in():
 	current_text_tween = create_tween()

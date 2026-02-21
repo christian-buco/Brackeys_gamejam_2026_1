@@ -6,6 +6,15 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_v81r5"]
 radius = 24.0
 
+[sub_resource type="Gradient" id="Gradient_3li8b"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v81r5"]
+gradient = SubResource("Gradient_3li8b")
+fill = 1
+fill_from = Vector2(0.517094, 0.4871795)
+fill_to = Vector2(0.7863248, 0.1965812)
+
 [node name="WoodSign" type="Area2D" unique_id=747002737]
 collision_mask = 2
 script = ExtResource("1_v81r5")
@@ -14,11 +23,22 @@ script = ExtResource("1_v81r5")
 modulate = Color(0.23137255, 0.23137255, 0.23137255, 1)
 texture = ExtResource("1_saro2")
 offset = Vector2(0, -10)
-hframes = 2
+hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=208416156]
 position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_v81r5")
 
+[node name="BlinkTimer" type="Timer" parent="." unique_id=1948366067]
+wait_time = 0.4
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=540541029]
+color = Color(0.66882336, 0.4510982, 0.24865928, 1)
+energy = 0.6
+texture = SubResource("GradientTexture2D_v81r5")
+offset = Vector2(0, -16)
+texture_scale = 2.5
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="BlinkTimer" to="." method="_on_blink_timer_timeout"]

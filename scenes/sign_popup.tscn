@@ -24,7 +24,7 @@ modulate = Color(0.3372549, 0.3372549, 0.3372549, 1)
 scale = Vector2(25, 25)
 texture = ExtResource("2_6piqt")
 offset = Vector2(0, 5)
-hframes = 2
+hframes = 3
 frame = 1
 
 [node name="Label" type="RichTextLabel" parent="SignPopup" unique_id=98219902]
