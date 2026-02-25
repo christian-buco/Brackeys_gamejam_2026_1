@@ -13,10 +13,9 @@ var is_reading_letter := false
 var can_move := true
 
 @export_group("Crush")
-@export var crush_grace_time: float = 0.15
-const CRUSH_TOUCH_DISTANCE: float = 18.0  # Player r5 + wall half 16 + margin
-
+@export var crush_grace_time: float = 0.1
 var crush_timer: float = 0.0
+
 var shake_strength: float = 0.0
 
 var step_distance: float = 16.0
@@ -59,7 +58,7 @@ func set_movement_enabled(enabled: bool) -> void:
 func _physics_process(delta: float) -> void:
 	if not can_move:
 		move_and_slide()
-		check_crush()
+		check_crush(delta)
 		return
 
 	var input := Vector2(
@@ -68,7 +67,7 @@ func _physics_process(delta: float) -> void:
 	).normalized()
 	velocity = input * speed
 	move_and_slide()
-	check_crush()
+	check_crush(delta)
 
 	# Step dust
 	var moving := input != Vector2.ZERO
@@ -96,7 +95,8 @@ func play_footstep():
 	if not $footsteps_audio.playing:
 		$footsteps_audio.play()
 
-func check_crush():
+func check_crush(delta):
+	var is_currently_crushed := false
 	var directions = [
 		{ "ray": ray_left,  "dir": Vector2.RIGHT,  "opp": ray_right },
 		{ "ray": ray_right, "dir": Vector2.LEFT, "opp": ray_left },
@@ -116,7 +116,13 @@ func check_crush():
 				if collider.move_velocity == direction:
 					if opposite_ray.is_colliding():
 						if is_static_wall(opposite_ray.get_collider()):
-							die()
+							is_currently_crushed = true
+	if is_currently_crushed:
+		crush_timer += delta
+		if crush_timer >= crush_grace_time:
+			die()
+	else:
+		crush_timer = 0.0
 
 func is_static_wall(collider):
 	return collider.is_in_group("static_wall")
