@@ -27,6 +27,11 @@ var was_moving: bool = false
 @onready var icon: Sprite2D = $Icon
 var inventory: Dictionary = {"cassette": 0, "painting": 0, "letter": 0}
 
+@onready var ray_up = $RayUp
+@onready var ray_down = $RayDown
+@onready var ray_left = $RayLeft
+@onready var ray_right = $RayRight
+
 func _ready() -> void:
 	camera_2d.zoom = Vector2(normal_zoom, normal_zoom)
 	last_position = global_position
@@ -54,6 +59,7 @@ func set_movement_enabled(enabled: bool) -> void:
 func _physics_process(delta: float) -> void:
 	if not can_move:
 		move_and_slide()
+		check_crush()
 		return
 
 	var input := Vector2(
@@ -62,6 +68,7 @@ func _physics_process(delta: float) -> void:
 	).normalized()
 	velocity = input * speed
 	move_and_slide()
+	check_crush()
 
 	# Step dust
 	var moving := input != Vector2.ZERO
@@ -80,15 +87,6 @@ func _physics_process(delta: float) -> void:
 	was_moving = moving
 	last_position = global_position
 
-	# Crush: wall pushing us into something
-	_check_crush(delta)
-
-	# Die if inside a wall
-	if $RayCast2D.is_colliding():
-		var c = $RayCast2D.get_collider()
-		if c and (c is TileMapLayer or c is TileMap or c.is_in_group("static_wall")):
-			die()
-
 	if input != Vector2.ZERO:
 		play_walk_animation(input)
 	else:
@@ -98,37 +96,33 @@ func play_footstep():
 	if not $footsteps_audio.playing:
 		$footsteps_audio.play()
 
-func _check_crush(delta: float) -> void:
-	# Crushed = moving wall is touching us AND we're pressed against something (floor, maze, etc.)
-	# Wall moves after us so we rarely get slide collision with it. Use distance instead.
-	var near_moving_wall := false
-	for node in get_tree().get_nodes_in_group("moving_wall"):
-		if not is_instance_valid(node) or not (node is Node2D):
-			continue
-		var wall: Node2D = node
-		var wall_center := wall.global_position + Vector2(16, 16)  # CollisionShape offset
-		if global_position.distance_to(wall_center) <= CRUSH_TOUCH_DISTANCE:
-			near_moving_wall = true
-			break
+func check_crush():
+	var directions = [
+		{ "ray": ray_left,  "dir": Vector2.RIGHT,  "opp": ray_right },
+		{ "ray": ray_right, "dir": Vector2.LEFT, "opp": ray_left },
+		{ "ray": ray_up,    "dir": Vector2.DOWN,    "opp": ray_down },
+		{ "ray": ray_down,  "dir": Vector2.UP,  "opp": ray_up }
+	]
 
-	# Must be pressed against floor/wall (slide collision). Don't use is_on_floor() - that's
-	# true when just standing, causing false crush when block moves up from below.
-	var against_obstacle := false
-	for i in get_slide_collision_count():
-		var c = get_slide_collision(i).get_collider()
-		if not c:
-			continue
-		if c is TileMapLayer or c is TileMap or c.is_in_group("static_wall"):
-			against_obstacle = true
-			break
+	for data in directions:
+		var ray = data["ray"]
+		var opposite_ray = data["opp"]
+		var direction = data["dir"]
 
-	if near_moving_wall and against_obstacle:
-		crush_timer += delta
-		if crush_timer >= crush_grace_time:
-			die()
-	else:
-		crush_timer = 0.0
+		if ray.is_colliding():
+			var collider = ray.get_collider()
 
+			if is_moving_wall(collider):
+				if collider.move_velocity == direction:
+					if opposite_ray.is_colliding():
+						if is_static_wall(opposite_ray.get_collider()):
+							die()
+
+func is_static_wall(collider):
+	return collider.is_in_group("static_wall")
+func is_moving_wall(collider):
+	return collider.is_in_group("moving_wall")
+	
 func die() -> void:
 	if not can_move:
 		return
@@ -190,9 +184,3 @@ func hide_icon() -> void:
 func collect_item(item_type: String) -> void:
 	if inventory.has(item_type):
 		inventory[item_type] += 1
-
-func _on_crush_detector_body_entered(_body: Node2D) -> void:
-	pass
-
-func _on_crush_detector_body_exited(_body: Node2D) -> void:
-	pass

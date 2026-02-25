@@ -13,6 +13,7 @@ var is_moving = false
 var move_progress = 0.0
 var is_paused = false
 var current_direction = 1  # 1 = forward, -1 = backward
+var move_velocity: Vector2 = Vector2.ZERO
 
 func _ready():
 	add_to_group("moving_wall")
@@ -23,11 +24,19 @@ func _ready():
 		start_moving()
 
 func _physics_process(delta):
+	if move_direction == Vector2.ZERO:
+		move_velocity = Vector2.ZERO
+		return
+		
 	if not is_moving:
+		move_velocity = Vector2.ZERO
 		return
 	
 	if is_paused:
+		move_velocity = Vector2.ZERO
 		return
+	
+	move_velocity = move_direction.normalized() * current_direction
 	
 	# Move the wall
 	move_progress += (move_speed / move_distance) * delta * current_direction
@@ -35,9 +44,11 @@ func _physics_process(delta):
 	# Check if reached end
 	if move_progress >= 1.0:
 		move_progress = 1.0
+		move_velocity = Vector2.ZERO
 		await pause_and_reverse()
 	elif move_progress <= 0.0:
 		move_progress = 0.0
+		move_velocity = Vector2.ZERO
 		await pause_and_reverse()
 	
 	# Update position
@@ -48,6 +59,7 @@ func start_moving():
 
 func stop_moving():
 	is_moving = false
+	move_velocity = Vector2.ZERO
 
 func pause_and_reverse():
 	is_paused = true
@@ -58,3 +70,14 @@ func pause_and_reverse():
 func on_item_collected(item_type:String):
 	if item_type == wait_for_item and not is_moving:
 		start_moving()
+
+
+#func _on_crush_detector_body_entered(body: Node2D) -> void:
+	#if body.is_in_group("player"):
+		#print("Crush detected and found player")
+		#if move_direction != Vector2.ZERO:
+			#print("Move direction is not zero")
+			#var opposite = -move_direction
+			#if body.is_blocked_in_direction(opposite):
+				#print("DIE??")
+				#body.die()

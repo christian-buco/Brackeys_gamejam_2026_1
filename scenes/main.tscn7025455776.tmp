@@ -36,7 +36,7 @@ position = Vector2(527, 303)
 [node name="Marker2D" type="Marker2D" parent="respawn_point" unique_id=1228148399]
 
 [node name="Player" parent="." unique_id=1119089927 instance=ExtResource("1_0wfyh")]
-position = Vector2(527, 304)
+position = Vector2(294, 553)
 
 [node name="Radio" parent="." unique_id=1218966091 instance=ExtResource("2_choun")]
 position = Vector2(464, 258)
@@ -84,50 +84,91 @@ tile_set = ExtResource("5_tbgi4")
 
 [node name="MovingWall" parent="Obstacles" unique_id=1103113379 instance=ExtResource("3_sugp2")]
 position = Vector2(256, 416)
+move_direction = Vector2(1, 0)
+move_distance = 64.0
+move_speed = 50.0
+auto_start = true
+wait_for_item = "letter"
 
 [node name="MovingWall8" parent="Obstacles" unique_id=122014554 instance=ExtResource("3_sugp2")]
 position = Vector2(704, 64)
+move_direction = Vector2(1, 0)
+move_distance = 64.0
+move_speed = 50.0
+auto_start = true
+wait_for_item = "letter"
 
 [node name="MovingWall9" parent="Obstacles" unique_id=1370813690 instance=ExtResource("3_sugp2")]
 position = Vector2(800, 128)
 move_direction = Vector2(0, -1)
+move_distance = 64.0
+move_speed = 50.0
+auto_start = true
+wait_for_item = "letter"
 
 [node name="MovingWall10" parent="Obstacles" unique_id=1478805831 instance=ExtResource("3_sugp2")]
 position = Vector2(1056, 96)
 move_direction = Vector2(0, 1)
+move_distance = 64.0
+move_speed = 50.0
+auto_start = true
+wait_for_item = "letter"
 
 [node name="MovingWall11" parent="Obstacles" unique_id=2134404142 instance=ExtResource("3_sugp2")]
 position = Vector2(1024, 96)
 move_direction = Vector2(0, 1)
 move_distance = 416.0
 move_speed = 100.0
+auto_start = true
+wait_for_item = "letter"
 
 [node name="MovingWall6" parent="Obstacles" unique_id=2037579046 instance=ExtResource("3_sugp2")]
 position = Vector2(64, 544)
+move_direction = Vector2(1, 0)
+move_distance = 64.0
+move_speed = 50.0
+auto_start = true
+wait_for_item = "letter"
 
 [node name="MovingWall7" parent="Obstacles" unique_id=123796223 instance=ExtResource("3_sugp2")]
 position = Vector2(256, 288)
+move_direction = Vector2(1, 0)
+move_distance = 64.0
+move_speed = 50.0
+auto_start = true
+wait_for_item = "letter"
 
 [node name="MovingWall2" parent="Obstacles" unique_id=1746546319 instance=ExtResource("3_sugp2")]
 position = Vector2(928, 416)
+move_direction = Vector2(1, 0)
+move_distance = 64.0
+move_speed = 50.0
 auto_start = false
+wait_for_item = "letter"
 
 [node name="MovingWall5" parent="Obstacles" unique_id=861048811 instance=ExtResource("3_sugp2")]
 position = Vector2(800, 576)
 move_direction = Vector2(-1, 0)
 move_distance = 256.0
 move_speed = 100.0
+auto_start = true
+wait_for_item = "letter"
 
 [node name="MovingWall12" parent="Obstacles" unique_id=366425439 instance=ExtResource("3_sugp2")]
 position = Vector2(256, 576)
+move_direction = Vector2(1, 0)
 move_distance = 288.0
 move_speed = 100.0
+auto_start = true
+wait_for_item = "letter"
 
 [node name="MovingWall4" parent="Obstacles" unique_id=477278655 instance=ExtResource("3_sugp2")]
 position = Vector2(896, 384)
 move_direction = Vector2(0, 1)
 move_distance = 96.0
+move_speed = 50.0
 auto_start = false
+wait_for_item = "letter"
 
 [node name="CanvasLayer" parent="." unique_id=1340662459 instance=ExtResource("7_o6xl0")]
 visible = false

@@ -200,11 +200,27 @@ stream_1/stream = ExtResource("6_bruh7")
 stream_2/stream = ExtResource("7_6eyey")
 stream_3/stream = ExtResource("8_d3wef")
 
-[node name="Player" type="CharacterBody2D" unique_id=1119089927]
+[node name="Player" type="CharacterBody2D" unique_id=1119089927 groups=["player"]]
 y_sort_enabled = true
 collision_layer = 2
 script = ExtResource("1_v6fml")
 normal_zoom = 4.0
+
+[node name="RayUp" type="RayCast2D" parent="." unique_id=2012199941]
+position = Vector2(0, -3)
+target_position = Vector2(0, -7)
+
+[node name="RayDown" type="RayCast2D" parent="." unique_id=1116535802]
+position = Vector2(0, -3)
+target_position = Vector2(0, 7)
+
+[node name="RayLeft" type="RayCast2D" parent="." unique_id=1926434297]
+position = Vector2(0, -3)
+target_position = Vector2(-7, 0)
+
+[node name="RayRight" type="RayCast2D" parent="." unique_id=1836173608]
+position = Vector2(0, -3)
+target_position = Vector2(7, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=899074835]
 texture_filter = 1
