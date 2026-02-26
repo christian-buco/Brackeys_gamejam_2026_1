@@ -130,8 +130,6 @@ func is_moving_wall(collider):
 	return collider.is_in_group("moving_wall")
 	
 func die() -> void:
-	if not can_move:
-		return
 	$death_audio.play()
 	can_move = false
 	velocity = Vector2.ZERO
