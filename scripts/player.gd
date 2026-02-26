@@ -146,6 +146,10 @@ func die() -> void:
 	global_position = home.global_position
 	animated_sprite.scale = Vector2.ONE
 	
+	# reset camera on death
+	camera_2d.zoom = Vector2(normal_zoom, normal_zoom)
+	is_zoomed_out = false
+	
 	await fade_in()
 	can_move = true
 	#get_tree().reload_current_scene()
