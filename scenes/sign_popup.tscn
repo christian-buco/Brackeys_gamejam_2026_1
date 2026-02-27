@@ -4,9 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b5odw6qb3j0oo" path="res://assets/wood_sign.png" id="2_6piqt"]
 [ext_resource type="FontFile" uid="uid://mjsvug80he8r" path="res://assets/fonts/PixelOperator8.ttf" id="3_mc5fc"]
 
-[node name="CanvasLayer" type="CanvasLayer" unique_id=1340662459]
-
-[node name="SignPopup" type="Control" parent="." unique_id=1461822501]
+[node name="SignPopup" type="Control" unique_id=1461822501]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -19,7 +17,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_6piqt")
 
-[node name="Sprite2D" type="Sprite2D" parent="SignPopup" unique_id=1303399696]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1303399696]
 modulate = Color(0.3372549, 0.3372549, 0.3372549, 1)
 scale = Vector2(25, 25)
 texture = ExtResource("2_6piqt")
@@ -27,7 +25,7 @@ offset = Vector2(0, 5)
 hframes = 3
 frame = 1
 
-[node name="Label" type="RichTextLabel" parent="SignPopup" unique_id=98219902]
+[node name="Label" type="RichTextLabel" parent="." unique_id=98219902]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -47,3 +45,5 @@ bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SignPopup" type="CanvasLayer" parent="." unique_id=1340662459]

@@ -5,10 +5,6 @@ var player_in_range: Node = null
 var blinking := false
 var blink_state := false
 
-func _ready():
-	body_entered.connect(_on_body_entered)
-	body_exited.connect(_on_body_exited)
-
 func _on_body_entered(body):
 	if body.name == "Player":
 		player_in_range = body

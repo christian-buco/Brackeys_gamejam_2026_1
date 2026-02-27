@@ -36,7 +36,7 @@ position = Vector2(527, 303)
 [node name="Marker2D" type="Marker2D" parent="respawn_point" unique_id=1228148399]
 
 [node name="Player" parent="." unique_id=1119089927 instance=ExtResource("1_0wfyh")]
-position = Vector2(527, 304)
+position = Vector2(535, 370)
 
 [node name="Radio" parent="." unique_id=1218966091 instance=ExtResource("2_choun")]
 position = Vector2(464, 258)
@@ -129,7 +129,12 @@ move_direction = Vector2(0, 1)
 move_distance = 96.0
 auto_start = false
 
-[node name="CanvasLayer" parent="." unique_id=1340662459 instance=ExtResource("7_o6xl0")]
+[node name="Popups" type="CanvasLayer" parent="." unique_id=1839940015]
+
+[node name="Letter_Popup" parent="Popups" unique_id=1340662459 instance=ExtResource("7_o6xl0")]
+visible = false
+
+[node name="SignPopup" parent="Popups" unique_id=1461822501 instance=ExtResource("9_85g3d")]
 visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1568162377]
@@ -138,9 +143,6 @@ color = Color(0.19963932, 0.20032448, 0.46793336, 1)
 [node name="WoodSign" parent="." unique_id=747002737 instance=ExtResource("8_tipki")]
 position = Vector2(527, 420)
 message = "You are not whole yet. Pieces of you remain in this place. Some are hidden where the shadows linger. Collect them all, and you may find yourself again."
-
-[node name="CanvasLayer2" parent="." unique_id=1146435598 instance=ExtResource("9_85g3d")]
-visible = false
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1903626199]
 script = ExtResource("10_hud")

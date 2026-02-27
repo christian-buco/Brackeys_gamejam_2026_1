@@ -5,9 +5,7 @@
 [ext_resource type="FontFile" uid="uid://mjsvug80he8r" path="res://assets/fonts/PixelOperator8.ttf" id="3_fonq7"]
 [ext_resource type="AudioStream" uid="uid://c2j6aoixiy506" path="res://assets/audio/sfx/paper.wav" id="4_kcemr"]
 
-[node name="CanvasLayer" type="CanvasLayer" unique_id=1340662459]
-
-[node name="LetterPopup" type="Control" parent="." unique_id=1461822501]
+[node name="LetterPopup" type="Control" unique_id=1461822501]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +16,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_uytn6")
 
-[node name="Sprite2D" type="Sprite2D" parent="LetterPopup" unique_id=1303399696]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1303399696]
 modulate = Color(0.33660764, 0.3366076, 0.3366076, 1)
 position = Vector2(576, 320)
 scale = Vector2(25, 25)
@@ -26,7 +24,7 @@ texture = ExtResource("2_77ven")
 hframes = 4
 frame = 3
 
-[node name="Label" type="RichTextLabel" parent="LetterPopup" unique_id=98219902]
+[node name="Label" type="RichTextLabel" parent="." unique_id=98219902]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -62,5 +60,5 @@ know that I do too.
 
 And I’m sorry."
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="LetterPopup" unique_id=1095386018]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1095386018]
 stream = ExtResource("4_kcemr")
