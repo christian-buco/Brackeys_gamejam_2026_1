@@ -55,6 +55,7 @@ func _toggle_pause() -> void:
 		_open_pause()
 
 func _open_pause() -> void:
+	get_tree().paused = true
 	pause_overlay.visible = true
 	_set_player_movement(false)
 	_update_pause_items()
@@ -74,6 +75,7 @@ func _close_pause() -> void:
 	overlay_tween.parallel().tween_property(pause_panel, "scale", Vector2(0.92, 0.92), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	await overlay_tween.finished
 	pause_overlay.visible = false
+	get_tree().paused = false
 
 func _set_player_movement(enabled: bool) -> void:
 	if player == null:
