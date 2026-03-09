@@ -26,7 +26,7 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("11_collectable")
 region = Rect2(64, 0, 32, 32)
 
-[node name="Main" type="Node2D" unique_id=1342932990]
+[node name="Main" type="Node2D" unique_id=1342932990 groups=["game_controller"]]
 y_sort_enabled = true
 script = ExtResource("1_tefeu")
 

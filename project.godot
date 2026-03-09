@@ -28,6 +28,10 @@ Music="*uid://c80otmtyhyaim"
 window/size/viewport_height=640
 window/stretch/mode="canvas_items"
 
+[global_group]
+
+game_controller=""
+
 [input]
 
 ui_accept={

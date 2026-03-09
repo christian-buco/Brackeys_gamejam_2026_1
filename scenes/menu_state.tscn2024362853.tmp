@@ -365,8 +365,6 @@ offset_right = 22.5
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.7977378, 0.7977378, 0.7977378, 1)
 theme_override_fonts/font = ExtResource("1_lvak4")
 text = "Back"
 
@@ -374,38 +372,9 @@ text = "Back"
 layout_mode = 2
 
 [node name="Credits" type="Label" parent="NotDark/CenterContainer/CreditsPanel" unique_id=102448692]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -162.0
-offset_top = -17.5
-offset_right = 162.0
-offset_bottom = 17.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_lvak4")
-text = "Credits: Beikon, rezmayyy
-"
-
-[node name="Back" type="Button" parent="NotDark/CenterContainer/CreditsPanel" unique_id=1531041750]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = 97.0
-offset_right = 32.0
-offset_bottom = 128.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.7977378, 0.7977378, 0.7977378, 1)
-theme_override_fonts/font = ExtResource("1_lvak4")
-text = "Back"
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="Options" type="Panel" parent="NotDark/CenterContainer" unique_id=724744760]
 layout_mode = 2
@@ -453,7 +422,6 @@ offset_top = -88.0
 offset_right = 124.0
 offset_bottom = -72.0
 grow_vertical = 2
-mouse_filter = 2
 max_value = 1.0
 step = 0.05
 value = 1.0
@@ -484,7 +452,6 @@ offset_top = -58.0
 offset_right = 124.0
 offset_bottom = -42.0
 grow_vertical = 2
-mouse_filter = 2
 max_value = 1.0
 step = 0.05
 value = 1.0
@@ -515,7 +482,6 @@ offset_top = -28.0
 offset_right = 124.0
 offset_bottom = -12.0
 grow_vertical = 2
-mouse_filter = 2
 max_value = 1.0
 step = 0.05
 value = 1.0
@@ -532,7 +498,6 @@ offset_right = 32.0
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_override_fonts/font = ExtResource("1_lvak4")
 text = "Back"
 
@@ -572,7 +537,6 @@ frame = 1
 
 [node name="SfxSelect" type="AudioStreamPlayer" parent="." unique_id=24798739]
 stream = ExtResource("5_l6m2e")
-volume_db = -20.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1889163158]
 texture_filter = 1
@@ -606,13 +570,15 @@ animation = &"collect"
 autoplay = "collect"
 centered = false
 
+[connection signal="focus_entered" from="NotDark/Menu/Play" to="." method="_on_play_focus_entered"]
 [connection signal="pressed" from="NotDark/Menu/Play" to="." method="_on_play_pressed"]
+[connection signal="focus_entered" from="NotDark/Menu/Controls" to="." method="_on_controls_focus_entered"]
 [connection signal="pressed" from="NotDark/Menu/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="NotDark/Menu/Options" to="." method="_on_options_pressed"]
+[connection signal="focus_entered" from="NotDark/Menu/Credits" to="." method="_on_credits_focus_entered"]
 [connection signal="pressed" from="NotDark/Menu/Credits" to="." method="_on_credits_pressed"]
+[connection signal="focus_entered" from="NotDark/Menu/Quit" to="." method="_on_quit_focus_entered"]
 [connection signal="pressed" from="NotDark/CenterContainer/ControlPanel/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="NotDark/CenterContainer/CreditsPanel/Back" to="." method="_on_back_pressed"]
 [connection signal="value_changed" from="NotDark/CenterContainer/Options/MasterSlider" to="NotDark/CenterContainer/Options" method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="NotDark/CenterContainer/Options/MusicSlider" to="NotDark/CenterContainer/Options" method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="NotDark/CenterContainer/Options/SFXSlider" to="NotDark/CenterContainer/Options" method="_on_sfx_slider_value_changed"]
-[connection signal="pressed" from="NotDark/CenterContainer/Options/Back" to="." method="_on_back_pressed"]
