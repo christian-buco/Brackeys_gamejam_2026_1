@@ -13,7 +13,7 @@ var is_reading_letter := false
 var can_move := true
 
 @export_group("Crush")
-@export var crush_grace_time: float = 0.1
+@export var crush_grace_time: float = 0.05
 var crush_timer: float = 0.0
 
 var shake_strength: float = 0.0
